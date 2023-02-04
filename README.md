@@ -13,7 +13,7 @@ by one place for encryption, or by one place in reverse for decryption. <br>
     + Define the alphabets dictionary with the desired mapping of key characters
     to their corresponding alphabets.<br>
 </sup>
-<br>
+
 <sup>
 
     + Specify the key to be used for encryption/decryption.
