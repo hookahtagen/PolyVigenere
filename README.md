@@ -37,9 +37,10 @@ the dictionary from the file. This would wouldn't be a secure method of storing 
 
     + Navigate to the PolyVigenere/src directory.
 
-</sup>
-<sup>
-Run the Vigenere2.0.py program using Python 3 [^1].
+    + Run the Vigenere2.0.py program using Python 3.
+
+
+Et voila! You're ready to go! [^src]
 </sup>
 
 ### Usage:<br>
@@ -91,5 +92,5 @@ Encrypted message:  YWIHPXWBJYOWDKJEURHV
 <hr>
 Notes:<br>
 <br>
-[^1] [Vigenere2.0.py](/src/Vigenere2.0.py) is the main program file. [Vigenere.py](/src/Vigenere.py) is an older version of the program, and is no longer used. [Vigenere.py](/src/Vigenere.py) is kept for reference purposes only.
 
+[^src]: This program was written for educational purposes only. It is not intended to be used for any malicious purposes. <br>
