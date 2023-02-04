@@ -94,11 +94,6 @@ Encrypted message:  YWIHPXWBJYOWDKJEURHV
 
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 Notes:<br>
 
