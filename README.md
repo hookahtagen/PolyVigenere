@@ -43,7 +43,7 @@ alphabets = {
     alphabets, and does not support multiple characters per alphabet.
 </sup>
 <sup>
-    ```
+```
     alphabets = {
         'A': 'EKMFLGDQVZNWOTYHXUSPIBARCJ',
         'B': 'AJDKSIRUXBLHWTMCQGZNPYFVOE',
@@ -54,5 +54,5 @@ alphabets = {
         'G': 'NZJHGRCXMYSWBOUFAIVLPEKQDT',
         'H': 'FKQHTLXOCBJSPDZRMAEWNIUYGV',
     } 
-    ```
+```
 </sup>
