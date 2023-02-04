@@ -1,4 +1,4 @@
-### Installation help for PolyVigenere
+## Installation help for PolyVigenere
 =======================================================================
 
 Thank you for trying out my program. I don't know if it has any use to you but
