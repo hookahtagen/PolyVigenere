@@ -30,7 +30,7 @@ the dictionary from the file. This would wouldn't be a secure method of storing 
 ### Installation:<br>
 <hr>
 
-For information on how to install the program, please refer to the [Install.md](https://github.com/hookahtagen/PolyVigenere/blob/main/src/Install.md) file. <br>
+For information on how to install the program, please refer to the [Install.md](https://github.com/hookahtagen/PolyVigenere/blob/main/src/Install.md) file. <br><br>
 
 
 ### Get Started:<br>
