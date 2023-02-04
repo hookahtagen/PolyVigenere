@@ -24,7 +24,8 @@ alphabets = {
 ```
 </sup>
 </sup>
-### Usage:<br>
+### Usage:
+<br>
 <sup>
 
     + Define the alphabets dictionary with the desired mapping of key characters
