@@ -10,30 +10,30 @@ by one place for encryption, or by one place in reverse for decryption. <br>
 ### Usage:<br>
 <sup>
 
-    + Define the alphabets dictionary with the desired mapping of key characters <br>
+    + Define the alphabets dictionary with the desired mapping of key characters
     to their corresponding alphabets.<br>
 </sup>
 <br>
 <sup>
 
-    + Specify the key to be used for encryption/decryption.<br>
+    + Specify the key to be used for encryption/decryption.
 </sup>
 
 <sup>
 
-    + Call the poly_vigenere_encrypt function with the plaintext message to be <br>
-    encrypted and the key, along with the alphabets dictionary. The encrypted <br>
+    + Call the poly_vigenere_encrypt function with the plaintext message to be
+    encrypted and the key, along with the alphabets dictionary. The encrypted
     message will be returned.
 </sup>
 <br>
 <sup>
 
-    + Call the poly_vigenere_decrypt function with the encrypted message and the <br>
-    key, along with the alphabets dictionary. The decrypted message will be returned. <br>
+    + Call the poly_vigenere_decrypt function with the encrypted message and the 
+    key, along with the alphabets dictionary. The decrypted message will be returned.
 </sup>
 
 <sup>
 
-    + Note: This program only works with single-character mappings of key characters to <br>
+    + Note: This program only works with single-character mappings of key characters to
     alphabets, and does not support multiple characters per alphabet.
 </sup>
