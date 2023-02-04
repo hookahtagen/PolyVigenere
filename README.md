@@ -1,6 +1,6 @@
 ## Polyalphabetic Cipher Encrypter/Decrypter
 
-### Description:<br>
+## Description:<br>
 <hr>
 This program allows for encryption and decryption of plaintext messages using a polyalphabetic cipher. The program uses an alphabet dictionary <br>
 to define the different alphabets for each character in the key. The key is then used to shift the corresponding character in the plaintext <br>
