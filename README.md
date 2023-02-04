@@ -41,6 +41,7 @@ the dictionary from the file. This would wouldn't be a secure method of storing 
 </sup>
 
 ### Usage:<br>
+<hr>
 <sup>
 
     + Define the alphabets dictionary with the desired mapping of key characters
@@ -72,4 +73,12 @@ Enter key: abcdefg (<- Is actually hidden in the terminal)
 Entered message: therussiansarecoming
 Encrypted message:  YWIHPXWBJYOWDKJEURHV
 ```
+</sup>
+
+#### Planned Features:<br>
+<hr>
+<sup>
+    + Add support for enciphering/deciphering txt files.
+    + Add a generator for the alphabet dictionary.
+    + 
 </sup>
