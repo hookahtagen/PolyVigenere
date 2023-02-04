@@ -1,5 +1,7 @@
 # Polyalphabetic Cipher Encrypter/Decrypter
 
+![vignere-cipher](https://steamuserimages-a.akamaihd.net/ugc/781867089027223194/99CFD48BB59612E4F6FECD0600EBE920BED846B6/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
+
 ## Description:<br>
 
 This program allows for enciphering and deciphering of plaintext messages using a polyalphabetic cipher. The program uses an alphabet dictionary <br>
@@ -96,7 +98,7 @@ Encrypted message:  YWIHPXWBJYOWDKJEURHV
 
 <br>
 
-## Notes:<br>
+## Notes and sources:<br>
 
 [^src]: Source Code: [src](https://github.com/hookahtagen/PolyVigenere/blob/main/src/)
 [^vigenere-cipher]: Source: [vigenere-cipher-twitch](https://steamuserimages-a.akamaihd.net/ugc/781867089027223194/99CFD48BB59612E4F6FECD0600EBE920BED846B6/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false)
