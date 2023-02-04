@@ -82,7 +82,7 @@ Entered message: therussiansarecoming
 Encrypted message:  YWIHPXWBJYOWDKJEURHV
 ```
 
-
+<br>
 
 ## Planned Features:<br>
 <hr>
