@@ -80,7 +80,6 @@ Encrypted message:  YWIHPXWBJYOWDKJEURHV
 ```
 
 <br>
-<br>
 
 #### Planned Features:<br>
 <hr>
