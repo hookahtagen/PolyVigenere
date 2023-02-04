@@ -28,7 +28,7 @@ by one place for encryption, or by one place in reverse for decryption. <br>
     key, along with the alphabets dictionary. The decrypted message will be returned. <br>
 </sup>
 
-<sup><br>
+<sup>
     + Note: This program only works with single-character mappings of key characters to <br>
     alphabets, and does not support multiple characters per alphabet.
 </sup>
