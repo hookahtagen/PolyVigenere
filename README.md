@@ -2,7 +2,7 @@
 
 ## Description:<br>
 
-This program allows for encryption and decryption of plaintext messages using a polyalphabetic cipher. The program uses an alphabet dictionary <br>
+This program allows for enciphering and deciphering of plaintext messages using a polyalphabetic cipher. The program uses an alphabet dictionary <br>
 to define the different alphabets for each character in the key. The key is then used to shift the corresponding character in the plaintext <br>
 by one place for encryption, or by one place in reverse for decryption. <br>
 <br>
