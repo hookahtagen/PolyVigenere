@@ -1,6 +1,7 @@
 ## Polyalphabetic Cipher Encrypter/Decrypter
 
 ### Description:<br>
+<hr>
 <sup>This program allows for encryption and decryption of plaintext messages using a polyalphabetic cipher. The program uses an alphabet dictionary <br>
 to define the different alphabets for each character in the key. The key is then used to shift the corresponding character in the plaintext <br>
 by one place for encryption, or by one place in reverse for decryption. <br>
@@ -29,6 +30,7 @@ the dictionary from the file. This would wouldn't be a secure method of storing 
 </sup>
 
 ### Get Started:<br>
+<hr>
 <sup>
 
     + Clone the repository to your local machine.
@@ -58,6 +60,7 @@ the dictionary from the file. This would wouldn't be a secure method of storing 
 </sup>
 
 ### Example:<br>
+<hr>
 <sup>
 The following >>example<< shows the program being used to encrypt the message "therussiansarecoming" using the key "abcdefg". <br><br>
 
