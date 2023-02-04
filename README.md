@@ -10,7 +10,6 @@ by one place for encryption, or by one place in reverse for decryption. <br>
 The program also allows for the use of a custom alphabet dictionary, <br>
 which can be used to define the alphabets for each character in the key. <br>
 The default alphabet dictionary is as follows:<br>  
-</sup>
 ```
 alphabets = {
     'A': 'EKMFLGDQVZNWOTYHXUSPIBARCJ',
@@ -23,6 +22,7 @@ alphabets = {
     'H': 'FKQHTLXOCBJSPDZRMAEWNIUYGV',
 } 
 ```
+</sup>
 </sup>
 ### Usage:<br>
 <sup>
