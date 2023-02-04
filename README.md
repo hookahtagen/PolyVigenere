@@ -71,7 +71,7 @@ Et voila! You're ready to go! [^src]
 The following >>example<< shows the program being used to encrypt the message "therussiansarecoming" using the key "abcdefg". <br><br>
 
 ```console
-hendrik@the-machine:~/Documents/Github$ /bin/python3 /home/hendrik/Documents/Github/PolyVigenere/src/Vigenere2.0.py
+hendrik@example:~$ /bin/python3 /home/hendrik/Documents/Github/PolyVigenere/src/Vigenere2.0.py
 Enter 'e' for encrypt or 'd' for decrypt: e
 Enter message: therussiansarecoming
 Enter key: abcdefg (<- Is actually hidden in the terminal)
