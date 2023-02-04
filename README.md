@@ -9,21 +9,25 @@ by one place for encryption, or by one place in reverse for decryption. <br>
 </sup>
 ### Usage:<br>
 <sup>
+
     + Define the alphabets dictionary with the desired mapping of key characters <br>
     to their corresponding alphabets.<br>
 </sup>
 <br>
 <sup>
+
     + Specify the key to be used for encryption/decryption.<br>
 </sup>
 
 <sup>
+
     + Call the poly_vigenere_encrypt function with the plaintext message to be <br>
     encrypted and the key, along with the alphabets dictionary. The encrypted <br>
     message will be returned.
 </sup>
 <br>
 <sup>
+
     + Call the poly_vigenere_decrypt function with the encrypted message and the <br>
     key, along with the alphabets dictionary. The decrypted message will be returned. <br>
 </sup>
