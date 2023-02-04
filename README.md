@@ -29,7 +29,7 @@ alphabets = {
 
 In an acutal application it would be unsafe to store the alphabet dictionary in the program itself, as it would be easy for an attacker to find the <br>
 mapping of key characters to alphabets. Instead, the alphabet dictionary should be stored in a separate file, and the program should be modified to read <br>
-the dictionary from the file. This would wouldn't be a secure method of storing the alphabet dictionary, but it would be better than storing it in the program itself.<br>
+the dictionary from the file. This would wouldn't be a secure method of storing the alphabet dictionary, but it would be better than storing it in the program itself.<br><br>
 
 ## Installation:<br>
 
