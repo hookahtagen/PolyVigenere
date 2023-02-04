@@ -37,7 +37,7 @@ the dictionary from the file. This would wouldn't be a secure method of storing 
 
     + Navigate to the PolyVigenere/src directory.
 
-    + Run the Vigenere2.0.py program using Python 3.
+    + Run the Vigenere2.0.py[^1] program using Python 3.
 </sup>
 
 ### Usage:<br>
@@ -74,6 +74,8 @@ Entered message: therussiansarecoming
 Encrypted message:  YWIHPXWBJYOWDKJEURHV
 ```
 </sup>
+<br>
+<br>
 
 #### Planned Features:<br>
 <hr>
@@ -83,3 +85,9 @@ Encrypted message:  YWIHPXWBJYOWDKJEURHV
     + Add a generator for the alphabet dictionary.
     + 
 </sup>
+<br>
+<hr>
+Notes:<br>
+<br>
+[^1] [Vigenere2.0.py](/src/Vigenere2.0.py) is the main program file. [Vigenere.py](/src/Vigenere.py) is an older version of the program, and is no longer used. [Vigenere.py](/src/Vigenere.py) is kept for reference purposes only.
+
