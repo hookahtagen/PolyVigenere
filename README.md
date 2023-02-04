@@ -28,7 +28,7 @@ alphabets = {
 <sup>
 
     + Define the alphabets dictionary with the desired mapping of key characters
-    to their corresponding alphabets.<br>
+    to their corresponding alphabets.
 
     + Specify the key to be used for encryption/decryption.
 
@@ -41,4 +41,13 @@ alphabets = {
 
     + Note: This program only works with single-character mappings of key characters to
     alphabets, and does not support multiple characters per alphabet.
+
+    ```console
+    hendrik@example:~/Documents/Github$ /bin/python3 /home/hendrik/Documents/Github/PolyVigenere/src/Vigenere2.0.py
+    Enter 'e' for encrypt or 'd' for decrypt: e
+    Enter message: therussiansarecoming
+    Enter key: 
+    Entered message: therussiansarecoming
+    Encrypted message:  YWIHPXWBJYOWDKJEURHV
+    ```
 </sup>
