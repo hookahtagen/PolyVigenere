@@ -6,6 +6,22 @@ using a polyalphabetic cipher. The program uses an alphabet dictionary <br>
 to define the different alphabets for each character in the key. The <br>
 key is then used to shift the corresponding character in the plaintext <br>
 by one place for encryption, or by one place in reverse for decryption. <br>
+<br>
+The program also allows for the use of a custom alphabet dictionary, <br>
+which can be used to define the alphabets for each character in the key. <br>
+The default alphabet dictionary is as follows:<br>  
+</sup>
+```alphabets = {
+    'A': 'EKMFLGDQVZNWOTYHXUSPIBARCJ',
+    'B': 'AJDKSIRUXBLHWTMCQGZNPYFVOE',
+    'C': 'BDFHJLCPRTXVZNYEIWGAKMUSQO',
+    'D': 'ESOVPZJAYQUIRHXLNFTGKDCMWB',
+    'E': 'VZBRGITYUPSDNHLXAWMJQOFECK',
+    'F': 'JPGVOUMFYQEBNHZRDKASXLICTW',
+    'G': 'NZJHGRCXMYSWBOUFAIVLPEKQDT',
+    'H': 'FKQHTLXOCBJSPDZRMAEWNIUYGV',
+} 
+```
 </sup>
 ### Usage:<br>
 <sup>
