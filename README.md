@@ -22,9 +22,9 @@ alphabets = {
 ```
 </sup>
 <sup>
-Note: In an acutal application it would be unsafe to store the alphabet dictionary in the program itself, as it would be easy for an attacker <br> 
-to find the mapping of key characters to alphabets. Instead, the alphabet dictionary should be stored in a separate file, and the program should <br> 
-be modified to read the dictionary from the file. This would wouldn't be a secure method of storing the alphabet dictionary, but it would be better <br> 
+Note: In an acutal application it would be unsafe to store the alphabet dictionary in the program itself, as it would be easy for an attacker to <br>
+find the mapping of key characters to alphabets. Instead, the alphabet dictionary should be stored in a separate file, and the program should be <br>
+modified to read the dictionary from the file. This would wouldn't be a secure method of storing the alphabet dictionary, but it would be better <br> 
 than storing it in the program itself.
 
 </sup>
