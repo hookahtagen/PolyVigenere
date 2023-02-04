@@ -7,7 +7,7 @@ to define the different alphabets for each character in the key. The key is then
 by one place for encryption, or by one place in reverse for decryption. <br>
 <br>
 The program also allows for the use of a custom alphabet dictionary, which can be used to define the alphabets for each character in the key. <br>
-The default alphabet dictionary is as follows:<br>  
+The default alphabet dictionary is as follows:<br> <br>  
 
 ```
 alphabets = {
@@ -22,12 +22,12 @@ alphabets = {
 } 
 ```
 
-
+<br>
 Note: In an acutal application it would be unsafe to store the alphabet dictionary in the program itself, as it would be easy for an attacker to find the <br>
 mapping of key characters to alphabets. Instead, the alphabet dictionary should be stored in a separate file, and the program should be modified to read <br>
 the dictionary from the file. This would wouldn't be a secure method of storing the alphabet dictionary, but it would be better than storing it in the program itself.
 
-
+<br>
 
 ### Get Started:<br>
 <hr>
@@ -42,6 +42,7 @@ the dictionary from the file. This would wouldn't be a secure method of storing 
 
 Et voila! You're ready to go! [^src]
 
+<br>
 
 ### Usage:<br>
 <hr>
@@ -62,6 +63,7 @@ Et voila! You're ready to go! [^src]
     + Note: This program only works with single-character mappings of key characters to
     alphabets, and does not support multiple characters per alphabet.
 
+<br>
 
 ### Example:<br>
 <hr>
@@ -90,7 +92,8 @@ Encrypted message:  YWIHPXWBJYOWDKJEURHV
 
 <br>
 <hr>
-Notes:<br>
+
+##### Notes:<br>
 <br>
 
 [^src]: This program was written for educational purposes only. It is not intended to be used for any malicious purposes. <br>
