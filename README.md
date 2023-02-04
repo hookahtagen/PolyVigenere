@@ -29,6 +29,15 @@ than storing it in the program itself.
 
 </sup>
 
+### Get Started:<br>
+<sup>
+    + Clone the repository to your local machine.
+
+    + Navigate to the PolyVigenere/src directory.
+
+    + Run the Vigenere2.0.py program using Python 3.
+</sup>
+
 ### Usage:<br>
 <sup>
 
