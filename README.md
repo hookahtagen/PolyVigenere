@@ -33,7 +33,7 @@ the dictionary from the file. This would wouldn't be a secure method of storing 
 
 ## Installation:<br>
 
-For information on how to install the program, please refer to the [Install.md](https://github.com/hookahtagen/PolyVigenere/blob/main/src/Install.md) file. <br>
+For information on how to install the program, please refer to the [Install.md](https://github.com/hookahtagen/PolyVigenere/blob/main/src/Install.md) file. <br><br>
 
 
 ## Get Started:<br>
@@ -45,7 +45,7 @@ For information on how to install the program, please refer to the [Install.md](
     + Run the Vigenere2.0.py program using Python 3.
 
 
-Et voila! You're ready to go! [^src]
+Et voila! You're ready to go! [^src] <br><br>
 
 
 ## Usage:<br>
@@ -65,6 +65,7 @@ Et voila! You're ready to go! [^src]
     + Note: This program only works with single-character mappings of key characters to
     alphabets, and does not support multiple characters per alphabet.
 
+<br><br>
 
 ## Example:<br>
 
