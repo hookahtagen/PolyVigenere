@@ -37,7 +37,9 @@ the dictionary from the file. This would wouldn't be a secure method of storing 
 
     + Navigate to the PolyVigenere/src directory.
 
-    + Run the Vigenere2.0.py program using Python 3 [^1].
+</sup>
+<sup>
+Run the Vigenere2.0.py program using Python 3 [^1].
 </sup>
 
 ### Usage:<br>
