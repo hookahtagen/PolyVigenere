@@ -44,11 +44,15 @@ alphabets = {
 </sup>
 <sup>
     ```
-    hendrik@example:~/Documents/Github$ /bin/python3 /home/hendrik/Documents/Github/PolyVigenere/src/Vigenere2.0.py
-    Enter 'e' for encrypt or 'd' for decrypt: e
-    Enter message: therussiansarecoming
-    Enter key: 
-    Entered message: therussiansarecoming
-    Encrypted message:  YWIHPXWBJYOWDKJEURHV
+    alphabets = {
+        'A': 'EKMFLGDQVZNWOTYHXUSPIBARCJ',
+        'B': 'AJDKSIRUXBLHWTMCQGZNPYFVOE',
+        'C': 'BDFHJLCPRTXVZNYEIWGAKMUSQO',
+        'D': 'ESOVPZJAYQUIRHXLNFTGKDCMWB',
+        'E': 'VZBRGITYUPSDNHLXAWMJQOFECK',
+        'F': 'JPGVOUMFYQEBNHZRDKASXLICTW',
+        'G': 'NZJHGRCXMYSWBOUFAIVLPEKQDT',
+        'H': 'FKQHTLXOCBJSPDZRMAEWNIUYGV',
+    } 
     ```
 </sup>
