@@ -23,6 +23,16 @@ alphabets = {
 } 
 ```
 </sup>
+<sup>
+Note: In an acutal application it would be unsafe to store the alphabet dictionary <br>
+in the program itself, as it would be easy for an attacker to find the mapping <br>
+of key characters to alphabets. Instead, the alphabet dictionary should be <br>
+stored in a separate file, and the program should be modified to read the <br>
+dictionary from the file.<br>
+This would wouldn't be a secure method of storing the alphabet dictionary, <br>
+but it would be better than storing it in the program itself.<br>
+
+</sup>
 
 ### Usage:<br>
 <sup>
