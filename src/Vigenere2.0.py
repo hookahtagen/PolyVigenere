@@ -19,8 +19,7 @@ def poly_vigenere_decrypt(ciphertext, key, alphabets):
     key_index = 0
     for char in ciphertext:
         if char in alphabets[key[key_index % len(key)]]:
-            char_index = alphabets[key[key_index % len(key)]].find(char)
-            plaintext += alphabets[key[key_index % len(key)]][(char_index - 1) % len(alphabets[key[key_index % len(key)]])]
+            plaintext += alphabets[key[key_index % len(key)]][alphabets[key[key_index % len(key)]].find(char) - 1]
         else:
             plaintext += char
         key_index += 1

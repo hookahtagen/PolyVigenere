@@ -90,6 +90,7 @@ Encrypted message:  YWIHPXWBJYOWDKJEURHV
 <hr>
 
 
+    + Randomize the choice of alphabet for each character in the key.
     + Add support for enciphering/deciphering txt files.
     + Add a generator for the alphabet dictionary.
     + 
