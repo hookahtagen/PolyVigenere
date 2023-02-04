@@ -25,7 +25,7 @@ by one place for encryption, or by one place in reverse for decryption. <br>
     encrypted and the key, along with the alphabets dictionary. The encrypted
     message will be returned.
 </sup>
-<br>
+
 <sup>
 
     + Call the poly_vigenere_decrypt function with the encrypted message and the 
