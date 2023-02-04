@@ -7,7 +7,9 @@ you're free to check it out. And you can do whatever you want with the code.
 For now i really don't have any plans on commercializing anything, but even then:
 You're free to go and use it how you like it.
 
-=======================================================================
+======================================================================= 
+<br>
+
 **Polyalphabetic Cipher Encrypter/Decrypter**
 
 This program allows for encryption and decryption of plaintext messages using a polyalphabetic cipher. 
@@ -16,6 +18,8 @@ The key is then used to shift the corresponding character in the plaintext by on
 or by one place in reverse for decryption.
 
 =======================================================================
+<br>
+
 **Install**
 
 Actually there is no need to install anything. Just download the files and run the program with python 3.
