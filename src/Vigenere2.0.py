@@ -1,5 +1,5 @@
 import getpass
-import polyAlpha
+from polyAlpha import Alphabet
 
 
 def poly_vigenere_encrypt(plaintext, key, alphabets):
@@ -26,8 +26,10 @@ def poly_vigenere_decrypt(ciphertext, key, alphabets):
         key_index += 1
     return plaintext
 
-
-def main( mode: str, message: str, key: str, alphabets: dict[str, str] ) -> None:
+def main( mode: str, message: str, key: str ) -> None:
+    abc = Alphabet( key )
+    alphabets = abc.polyalphabet
+    
     if mode == 'e':
         print(f'Entered message: {message}')
         print("Encrypted message: ", poly_vigenere_encrypt(message, key, alphabets))
@@ -43,8 +45,6 @@ if __name__ == '__main__':
     mode = input("Enter \'e' for encrypt or \'d' for decrypt: ").lower()
     message = input("Enter message: ")
     key = getpass.getpass("Enter key: ").upper()
-    abc = polyAlpha.Alphabet( key )
-    alphabets = abc.alphabets
     
-    main(mode, message, key, alphabets)
+    main(mode, message, key)
     

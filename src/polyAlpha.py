@@ -12,14 +12,17 @@ class Alphabet:
     }
     
     def __init__( self, key: str ) -> None:
-        self.key = key.upper( )
-        self.alphabets = self.getAlpha( self.key )
+        self.key = key
+        self.polyalphabet = self.getAlpha( self.key )
         
-    def getAlpha( self, key: str ) -> str:
-        alphabets: dict[ str, str ]
+    def getAlpha( self, key: str ) -> dict[ str, str ]:
+        alphabets: dict[ str, str ] = { }
+        
+        # For every char in the key append the corresponding dict enty
+        # to the variable 'alphabets'
         
         for char in key:
-            if char in self.alphabets:
-                return self.alphabets[ char ]
+            alphabets[char] = self.alphabets[char]
         
         return alphabets
+    
