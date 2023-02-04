@@ -1,15 +1,13 @@
 ## Polyalphabetic Cipher Encrypter/Decrypter
 
 ### Description:<br>
-<sup>This program allows for encryption and decryption of plaintext messages <br>
-using a polyalphabetic cipher. The program uses an alphabet dictionary <br>
-to define the different alphabets for each character in the key. The <br>
-key is then used to shift the corresponding character in the plaintext <br>
+<sup>This program allows for encryption and decryption of plaintext messages using a polyalphabetic cipher. The program uses an alphabet dictionary <br>
+to define the different alphabets for each character in the key. The key is then used to shift the corresponding character in the plaintext <br>
 by one place for encryption, or by one place in reverse for decryption. <br>
 <br>
-The program also allows for the use of a custom alphabet dictionary, <br>
-which can be used to define the alphabets for each character in the key. <br>
+The program also allows for the use of a custom alphabet dictionary, which can be used to define the alphabets for each character in the key. <br>
 The default alphabet dictionary is as follows:<br>  
+
 ```
 alphabets = {
     'A': 'EKMFLGDQVZNWOTYHXUSPIBARCJ',
@@ -24,13 +22,10 @@ alphabets = {
 ```
 </sup>
 <sup>
-Note: In an acutal application it would be unsafe to store the alphabet dictionary <br>
-in the program itself, as it would be easy for an attacker to find the mapping <br>
-of key characters to alphabets. Instead, the alphabet dictionary should be <br>
-stored in a separate file, and the program should be modified to read the <br>
-dictionary from the file.<br>
-This would wouldn't be a secure method of storing the alphabet dictionary, <br>
-but it would be better than storing it in the program itself.<br>
+Note: In an acutal application it would be unsafe to store the alphabet dictionary in the program itself, as it would be easy for an attacker <br> 
+to find the mapping of key characters to alphabets. Instead, the alphabet dictionary should be stored in a separate file, and the program should <br> 
+be modified to read the dictionary from the file. This would wouldn't be a secure method of storing the alphabet dictionary, but it would be better <br> 
+than storing it in the program itself.
 
 </sup>
 
