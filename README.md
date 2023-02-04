@@ -6,7 +6,7 @@ using a polyalphabetic cipher. The program uses an alphabet dictionary <br>
 to define the different alphabets for each character in the key. The <br>
 key is then used to shift the corresponding character in the plaintext <br>
 by one place for encryption, or by one place in reverse for decryption. <br>
-<br></sup>
+</sup>
 ### Usage:<br>
 <sup><br>
 Define the alphabets dictionary with the desired mapping of key characters <br>
