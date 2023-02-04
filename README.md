@@ -31,6 +31,7 @@ than storing it in the program itself.
 
 ### Get Started:<br>
 <sup>
+
     + Clone the repository to your local machine.
 
     + Navigate to the PolyVigenere/src directory.
