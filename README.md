@@ -42,17 +42,17 @@ alphabets = {
     + Note: This program only works with single-character mappings of key characters to
     alphabets, and does not support multiple characters per alphabet.
 </sup>
-<sup>
+<sup><br>
 ```
-    alphabets = {
-        'A': 'EKMFLGDQVZNWOTYHXUSPIBARCJ',
-        'B': 'AJDKSIRUXBLHWTMCQGZNPYFVOE',
-        'C': 'BDFHJLCPRTXVZNYEIWGAKMUSQO',
-        'D': 'ESOVPZJAYQUIRHXLNFTGKDCMWB',
-        'E': 'VZBRGITYUPSDNHLXAWMJQOFECK',
-        'F': 'JPGVOUMFYQEBNHZRDKASXLICTW',
-        'G': 'NZJHGRCXMYSWBOUFAIVLPEKQDT',
-        'H': 'FKQHTLXOCBJSPDZRMAEWNIUYGV',
-    } 
+alphabets = {
+    'A': 'EKMFLGDQVZNWOTYHXUSPIBARCJ',
+    'B': 'AJDKSIRUXBLHWTMCQGZNPYFVOE',
+    'C': 'BDFHJLCPRTXVZNYEIWGAKMUSQO',
+    'D': 'ESOVPZJAYQUIRHXLNFTGKDCMWB',
+    'E': 'VZBRGITYUPSDNHLXAWMJQOFECK',
+    'F': 'JPGVOUMFYQEBNHZRDKASXLICTW',
+    'G': 'NZJHGRCXMYSWBOUFAIVLPEKQDT',
+    'H': 'FKQHTLXOCBJSPDZRMAEWNIUYGV',
+} 
 ```
 </sup>
