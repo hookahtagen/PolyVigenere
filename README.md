@@ -27,7 +27,10 @@ Note: In an acutal application it would be unsafe to store the alphabet dictiona
 mapping of key characters to alphabets. Instead, the alphabet dictionary should be stored in a separate file, and the program should be modified to read <br>
 the dictionary from the file. This would wouldn't be a secure method of storing the alphabet dictionary, but it would be better than storing it in the program itself.
 
-<br>
+### Installation:<br>
+<hr>
+
+For information on how to install the program, please refer to the [Install.md](https://github.com/hookahtagen/PolyVigenere/blob/main/src/Install.md) file.
 
 ### Get Started:<br>
 <hr>
@@ -42,7 +45,6 @@ the dictionary from the file. This would wouldn't be a secure method of storing 
 
 Et voila! You're ready to go! [^src]
 
-<br>
 
 ### Usage:<br>
 <hr>
@@ -63,7 +65,6 @@ Et voila! You're ready to go! [^src]
     + Note: This program only works with single-character mappings of key characters to
     alphabets, and does not support multiple characters per alphabet.
 
-<br>
 
 ### Example:<br>
 <hr>
