@@ -1,4 +1,4 @@
-## Polyalphabetic Cipher Encrypter/Decrypter
+# Polyalphabetic Cipher Encrypter/Decrypter
 
 ## Description:<br>
 
@@ -33,8 +33,6 @@ For information on how to install the program, please refer to the [Install.md](
 
 
 ## Get Started:<br>
-<hr>
-
 
     + Clone the repository to your local machine.
 
