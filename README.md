@@ -96,4 +96,4 @@ Encrypted message:  YWIHPXWBJYOWDKJEURHV
 ##### Notes:<br>
 <br>
 
-[^src]: This program was written for educational purposes only. It is not intended to be used for any malicious purposes. <br>
+[^src]: Source Code: [Vigenere2.0.py](/src/Vigenere2.0.py)
