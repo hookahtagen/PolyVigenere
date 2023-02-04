@@ -78,6 +78,7 @@ Encrypted message:  YWIHPXWBJYOWDKJEURHV
 #### Planned Features:<br>
 <hr>
 <sup>
+
     + Add support for enciphering/deciphering txt files.
     + Add a generator for the alphabet dictionary.
     + 
