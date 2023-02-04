@@ -66,7 +66,7 @@ Et voila! You're ready to go! [^src]
 
 ## Example:<br>
 
-The following >>example<< shows the program being used to encrypt the message "therussiansarecoming" using the key "abcdefg". <br><br>
+The following **example** shows the program being used to encipher the message "therussiansarecoming" using the key "abcdefg". <br><br>
 <sup>
     <hr>
 </sup>
@@ -82,7 +82,7 @@ Encrypted message:  YWIHPXWBJYOWDKJEURHV
 
 
 
-### Planned Features:<br>
+## Planned Features:<br>
 <hr>
 
 
@@ -90,10 +90,8 @@ Encrypted message:  YWIHPXWBJYOWDKJEURHV
     + Add a generator for the alphabet dictionary.
     + 
 
-<br>
-<hr>
 
-##### Notes:<br>
-<br>
+
+## Notes:<br>
 
 [^src]: Source Code: [src](https://github.com/hookahtagen/PolyVigenere/blob/main/src/)
