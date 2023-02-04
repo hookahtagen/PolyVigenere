@@ -42,7 +42,10 @@ alphabets = {
     + Note: This program only works with single-character mappings of key characters to
     alphabets, and does not support multiple characters per alphabet.
 </sup>
-<sup><br>
+<sup>
+The program also allows for the use of a custom alphabet dictionary, <br>
+which can be used to define the alphabets for each character in the key. <br>
+The default alphabet dictionary is as follows:<br>  
 ```
 alphabets = {
     'A': 'EKMFLGDQVZNWOTYHXUSPIBARCJ',
