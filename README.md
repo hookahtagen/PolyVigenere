@@ -45,9 +45,6 @@ alphabets = {
 
 ### Example:<br>
 <sup>
-The program also allows for the use of a custom alphabet dictionary, <br>
-which can be used to define the alphabets for each character in the key. <br>
-The default alphabet dictionary is as follows:<br>
 
 ```console
 hendrik@the-machine:~/Documents/Github$ /bin/python3 /home/hendrik/Documents/Github/PolyVigenere/src/Vigenere2.0.py
