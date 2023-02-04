@@ -26,7 +26,11 @@ alphabets = {
 
 #### Note:
 
-<stlye tab{ tab-size: 2;}>
+<stlye>
+    .tab{ 
+        tab-size: 2;
+    }
+</stlye>
 
 <p class="tab">In an acutal application it would be unsafe to store the alphabet dictionary in the program itself, as it would be easy for an attacker to find the <br>
 <p class="tab">mapping of key characters to alphabets. Instead, the alphabet dictionary should be stored in a separate file, and the program should be modified to read <br>
