@@ -47,7 +47,8 @@ alphabets = {
 <sup>
 The program also allows for the use of a custom alphabet dictionary, <br>
 which can be used to define the alphabets for each character in the key. <br>
-The default alphabet dictionary is as follows:<br>  
+The default alphabet dictionary is as follows:<br>
+  
 ```
 alphabets = {
     'A': 'EKMFLGDQVZNWOTYHXUSPIBARCJ',
