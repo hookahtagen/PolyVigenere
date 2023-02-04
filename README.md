@@ -96,4 +96,4 @@ Encrypted message:  YWIHPXWBJYOWDKJEURHV
 ##### Notes:<br>
 <br>
 
-[^src]: Source Code: [Vigenere2.0.py](github.com/hookahtagen/PolyVigenere/blob/764eb8e6e3dc6f9f6863e55f012b5b28e4659def/src/Vigenere2.0.py)
+[^src]: Source Code: [Vigenere2.0.py](https://github.com/hookahtagen/PolyVigenere/blob/main/src/Vigenere2.0.py)
