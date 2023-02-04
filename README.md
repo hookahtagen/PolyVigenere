@@ -65,7 +65,7 @@ Et voila! You're ready to go! [^src] <br><br>
     + Note: This program only works with single-character mappings of key characters to
     alphabets, and does not support multiple characters per alphabet.
 
-<br><br>
+<br>
 
 ## Example:<br>
 
