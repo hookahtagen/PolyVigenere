@@ -41,7 +41,8 @@ alphabets = {
 
     + Note: This program only works with single-character mappings of key characters to
     alphabets, and does not support multiple characters per alphabet.
-
+</sup>
+<sup>
     ```
     hendrik@example:~/Documents/Github$ /bin/python3 /home/hendrik/Documents/Github/PolyVigenere/src/Vigenere2.0.py
     Enter 'e' for encrypt or 'd' for decrypt: e
