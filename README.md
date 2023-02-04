@@ -29,6 +29,7 @@ by one place for encryption, or by one place in reverse for decryption. <br>
 </sup>
 
 <sup>
+
     + Note: This program only works with single-character mappings of key characters to <br>
     alphabets, and does not support multiple characters per alphabet.
 </sup>
