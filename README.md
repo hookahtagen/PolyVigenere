@@ -92,6 +92,14 @@ Encrypted message:  YWIHPXWBJYOWDKJEURHV
 
 
 
-## Notes:<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+Notes:<br>
 
 [^src]: Source Code: [src](https://github.com/hookahtagen/PolyVigenere/blob/main/src/)
