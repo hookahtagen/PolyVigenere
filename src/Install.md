@@ -1,4 +1,4 @@
-**Polyalphabetic Vigére Cipher - Polyalphabetische Vigére Verschlüsselung**
+### Polyalphabetic Vigére Cipher - Polyalphabetische Vigére Verschlüsselung
 =======================================================================
 
 Thank you for trying out my program. I don't know if it has any use to you but
