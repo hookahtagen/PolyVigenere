@@ -15,7 +15,7 @@ class Logger:
         console_handler.setFormatter( self.formatter )
         self.logger.addHandler( console_handler )
 
-        file_handler = logging.FileHandler( '/log/alphabet.log' )
+        file_handler = logging.FileHandler( '../log/alphabet.log' )
         file_handler.setLevel( logging.DEBUG )
         file_handler.setFormatter( self.formatter )
         self.logger.addHandler( file_handler )
@@ -92,7 +92,7 @@ class Alphabet:
     def save_alpha( self, abc_dict: dict[ str, str ], log: Logger ):
         ret: int = 1
 
-        out_file = '/data/alphabets.txt'
+        out_file = '../data/alphabets.txt'
         
         with open( out_file, 'w') as out:
             for key, value in abc_dict.items():
