@@ -1,3 +1,4 @@
+import json
 import os
 import random as rnd
 import string
@@ -91,17 +92,41 @@ class Alphabet:
     
     def save_alpha( self, abc_dict: dict[ str, str ], log: Logger ):
         ret: int = 1
-
-        out_file = '/home/hendrik/Documents/Github/PolyVigenere/data/alphabets.txt'
+        file_name = '/home/hendrik/Documents/Github/PolyVigenere/src/polyAlpha.py'
+        bak_file = '/home/hendrik/Documents/Github/PolyVigenere/src/bak/polyAlpha_bak.py'
         
-        with open( out_file, 'w') as out:
-            for key, value in abc_dict.items():
-                out.write( f'\'{ key }\' : \'{ value }\'\n' )
+        try:
+            with open( file_name, 'r' ) as in_file:
+                buffer = in_file.readlines( )
+                p_print = pprint.PrettyPrinter( indent = 4 )
+                p_print.pprint( buffer )
+                
+                with open( bak_file, 'w' ) as bak_file:
+                    bak_file.writelines( buffer )
+                    log.info( 'Backup file created' )
+                
+                if 'class Alphabet:' in [x.strip() for x in buffer]:
+                    buff_down_limit = [x.strip() for x in buffer].index('class Alphabet:')+2
+                    buff_up_limit = buff_down_limit + len( abc_dict ) + 2
+                else:
+                    raise ValueError("Error: string 'class Alphabet:' and/or 'def __init__' not found in the list")
+                
+                buff_1 = buffer[ : buff_down_limit ]
+                buff_2 = buffer[ buff_up_limit : ]
+                
+                buffer = buff_1 + [ f'    alphabets = { abc_dict }\n' ] + buff_2
+                
+            
+                with open( file_name, 'w' ) as out_file:
+                    out_file.writelines( buffer )
+                    
+                    
+                log.info( 'Successfully saved the generated alphabets to the program.' )
                 ret = 0
+        except Exception as e:
+            log.error( f'Error while saving the generated alphabets: { e }' )
+            ret = 1
         
-        log.info( f'Success!')
-        log.info( f'Wrote { len( abc_dict ) } alphabets to \'{ out_file }\'.' )
-        print( "\n\nNote:\nIn order to use the generated alphabets, please copy\nthe contents of alphabets.txt, found in \'/data\' to\nthe variable \'alphabets\' in the file \'polyAlpha.py\'\n")
         return ret
         
         
