@@ -70,10 +70,9 @@ Et voila! You're ready to go! [^src] <br><br>
 
 ## Example:<br>
 
+### Example usage of Vigenere2.0.py:<br>
+
 The following **example** shows the program being used to encipher the message "therussiansarecoming" using the key "abcdefg". <br><br>
-<sup>
-    <hr>
-</sup>
 
 ```console
 hendrik@example:~$ /bin/python3 /home/hendrik/Documents/Github/PolyVigenere/src/Vigenere2.0.py
@@ -86,13 +85,53 @@ Encrypted message:  YWIHPXWBJYOWDKJEURHV
 
 <br>
 
-## Planned Features:<br>
-<hr>
+### Example usage of the generator for the alphabet dictionary:<br>
 
+The following **example** shows the usage of the generator for the alphabet dictionary. <br><br>
+
+```console
+hendrik@example:$ /bin/python3 /home/hendrik/Documents/Github/PolyVigenere/src/polyAlpha.py
+How many alphabets do you want to generate? > 20
+Below you'll find the generated alphabets:
+
+{   'Alpha_I': 'BNKGVJIALPCFWXSRDYHUOZTMQE',
+    'Alpha_II': 'THEWMXGZAKJPSORCLFQBYUDVIN',
+    'Alpha_III': 'CUZHKXAPTMFQYNBJWGIVSLERDO',
+    'Alpha_IV': 'SXAJZPHWFQRCBUEINDYTVMKGOL',
+    'Alpha_IX': 'HOVALFYZDKCBISGXMTRNUWQJPE',
+    'Alpha_V': 'THQCNGIRAFVBLUXPYMSKOEJDZW',
+    'Alpha_VI': 'BKCWIFXZMSLEAJPHRTUNQOYDGV',
+    'Alpha_VII': 'WTREIPMCDONJLYZFGQXUBSAVKH',
+    'Alpha_VIII': 'IPOTLGXUENWSMJYQRCFAHBVKZD',
+    'Alpha_X': 'LETWCMHZOSKBDIYJVXNGAPFURQ',
+    'Alpha_XI': 'FHDEPYKMVQTNBLRUXSGZJWCOAI',
+    'Alpha_XII': 'YRVMOSUJIDZTBLXGNHCPWQFEKA',
+    'Alpha_XIII': 'YKTEDPCGXJHAZSRWNIQOMUVBFL',
+    'Alpha_XIV': 'XVZQYGOBDIUAMPJSFCNTKWHRLE',
+    'Alpha_XIX': 'RQBLCXMPNKHTSFVOZEYAUDJWGI',
+    'Alpha_XV': 'KHUINGLFXRZCWPJDSBYVATMQEO',
+    'Alpha_XVI': 'EFNRPTSZVWMBCYKDOIQULAXGHJ',
+    'Alpha_XVII': 'QCTRXZVWIYHKBUPFLJMNOSEGAD',
+    'Alpha_XVIII': 'IJMBZFHPSKEVTAQDLWGCUNXORY',
+    'Alpha_XX': 'OELHXRFJQSWAPGCITMNBVYZUKD'}
+
+
+Do you want to save the generated alphabets to the program? (y/n) > y
+2023-02-05 23:01:43,804 - __main__ - INFO - Success!
+2023-02-05 23:01:43,805 - __main__ - INFO - Wrote 20 alphabets to '/home/hendrik/Documents/Github/PolyVigenere/data/alphabets.txt'.
+
+
+Note:
+In order to use the generated alphabets, please copy
+the contents of alphabets.txt, found in '/data' to
+the variable 'alphabets' in the file 'polyAlpha.py'
+```
+
+
+## Planned Features:<br>
 
     + Randomize the choice of alphabet for each character in the key.
     + Add support for enciphering/deciphering txt files.
-    + Add a generator for the alphabet dictionary.
     + 
 
 
