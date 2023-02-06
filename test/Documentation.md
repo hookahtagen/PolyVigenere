@@ -128,9 +128,8 @@ The default alphabet set is the one that is stored in <br><br>
 /src/polyAlpha.py
 ```
 
-But you don't have to worry about that. <br>
-You can also use a custom alphabet set if you want to. But i don't recommend it for now, as <br>
-it's not really tested yet. <br>
+But you don't have to worry about that. You can also use a custom alphabet set if you want to. 
+But i don't recommend it for now, as it's not really tested yet. <br>
 <br>
 Then you'll be asked if you wanna encrypt or decrypt a message. <br>
 Do so by entering <br>
