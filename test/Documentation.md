@@ -10,7 +10,7 @@ Table of Contents ( TOC )
     - [Installation](#installation)
     - [Quickstart](#quickstart)
     - [Example Vigenre2.0.py](#example-vigenre20py)
-      - [Explanation: ](#explanation-)
+      - [Explanation:](#explanation)
     - [Example polyAlpha.py](#example-polyalphapy)
   
 
@@ -118,7 +118,7 @@ hendrik@example:~$
 
 <br>
 
-#### Explanation: <br>
+#### Explanation:
 
 + Call the program with ```hendrik@example:~$ python3 Vigenere2.0.py``` 
 + Then you'll be asked if you wanna use the default alphabet set or a custom one.
