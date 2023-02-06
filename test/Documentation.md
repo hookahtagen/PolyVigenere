@@ -151,6 +151,7 @@ ACBDLJ
 ```
 
 But as i said, the key is actually hidden in the terminal and this is just for demonstration purposes. <br>
+<br>
 
 ### Example polyAlpha.py
 <sup>
