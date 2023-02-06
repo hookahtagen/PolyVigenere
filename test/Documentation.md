@@ -116,8 +116,6 @@ Encrypted message:  RVNEBEHYPMLDOYVHXYYR
 hendrik@example:~$ 
 ```
 
-<br>
-
 #### Explanation:
 
 + Call the program with ```hendrik@example:~$ python3 Vigenere2.0.py``` 
