@@ -10,6 +10,7 @@ Table of Contents ( TOC )
     - [Installation](#installation)
     - [Quickstart](#quickstart)
     - [Example Vigenre2.0.py](#example-vigenre20py)
+        - [Explanation: ](#explanation-)
     - [Example polyAlpha.py](#example-polyalphapy)
   
 
@@ -112,20 +113,21 @@ Encrypted message:  RVNEBEHYPMLDOYVHXYYR
 hendrik@example:~$ 
 ```
 <br>
-Explanation: <br>
+
+##### Explanation: <br>
 Call the program with <br><br>
 
 ```console
 hendrik@example:~$ python3 Vigenere2.0.py
 ``` 
-<br>
+
 Then you'll be asked if you wanna use the default alphabet set or a custom one. <br>
 The default alphabet set is the one that is stored in <br><br>
 
 ```console  
 /src/polyAlpha.py
 ```
-<br>
+
 You can also use a custom alphabet set if you want to. But i don't recommend it for now, as <br>
 it's not really tested yet. <br>
 <br>
@@ -135,7 +137,7 @@ Do so by entering <br><br>
 ```console 
 e for encrypt or d for decrypt.
 ```
-<br>
+
 After that you'll be asked to enter a message. <br>
 Enter the message you wanna encrypt or decrypt. <br>
 <br>
@@ -146,7 +148,7 @@ In this example i used the key <br><br>
 ```consle
 ACBDLJ
 ```
-<br>
+
 But as i said, the key is actually hidden in the terminal and this is just for demonstration purposes. <br>
 
 ### Example polyAlpha.py
