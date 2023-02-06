@@ -115,7 +115,7 @@ hendrik@example:~$
 <br>
 
 #### Explanation: <br>
-Call the program with <br><br>
+Call the program with <br>
 
 ```console
 hendrik@example:~$ python3 Vigenere2.0.py
@@ -132,7 +132,7 @@ You can also use a custom alphabet set if you want to. But i don't recommend it 
 it's not really tested yet. <br>
 <br>
 Then you'll be asked if you wanna encrypt or decrypt a message. <br>
-Do so by entering <br><br>
+Do so by entering <br>
 
 ```console 
 e for encrypt or d for decrypt.
@@ -143,7 +143,7 @@ Enter the message you wanna encrypt or decrypt. <br>
 <br>
 Then you'll be asked to enter a key. <br>
 Enter the key you wanna use. <br>
-In this example i used the key <br><br>
+In this example i used the key <br>
 
 ```consle
 ACBDLJ
