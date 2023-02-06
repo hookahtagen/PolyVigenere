@@ -3,6 +3,7 @@ import logging
 from polyAlpha import Alphabet
 
 class Logger:
+    
     def __init__( self ):
         self.logger = logging.getLogger( __name__ )
         self.logger.setLevel( logging.DEBUG )
@@ -33,7 +34,21 @@ class Logger:
     def critical( self, message: str ):
         self.logger.critical( message )
 
-def poly_vigenere_encrypt(plaintext, key, alphabets):
+def poly_vigenere_encrypt(plaintext: str, key: str, alphabets: dict[str, str] ) -> str:
+    '''
+    Description:
+        This function takes a plaintext string and a key string and encrypts the plaintext using the key.
+        Every character in the plaintext is encrypted using the character in the key that corresponds to it.
+
+    Args:
+        plaintext (str): _description_
+        key (str): _description_
+        alphabets (dict[str, str]): _description_
+
+    Returns:
+        str: _description_
+    '''    
+    
     ciphertext = ""
     key_index = 0
     for char in plaintext:
@@ -46,7 +61,20 @@ def poly_vigenere_encrypt(plaintext, key, alphabets):
         key_index += 1
     return ciphertext
 
-def poly_vigenere_decrypt(ciphertext, key, alphabets):
+def poly_vigenere_decrypt(ciphertext: str, key: str, alphabets: dict[str, str]) -> str:
+    '''
+    Description:
+        This function takes a ciphertext string and a key string and decrypts the ciphertext using the key.
+        
+    Args:
+        ciphertext (str): _description_
+        key (str): _description_
+        alphabets (dict[str, str]): _description_
+
+    Returns:
+        str: _description_
+    '''    
+    
     plaintext = ""
     key_index = 0
     for char in ciphertext:
@@ -59,6 +87,24 @@ def poly_vigenere_decrypt(ciphertext, key, alphabets):
     return plaintext
 
 def main( alpha_set: str, mode: str, message: str, key: str, log: Logger ) -> None:
+    '''
+    Description:
+        This is the main function of the program. It takes the user input and calls the 
+        appropriate functions to encrypt or decrypt the message.    
+
+    Args:
+        alpha_set (str): _description_
+        mode (str): _description_
+        message (str): _description_
+        key (str): _description_
+        log (Logger): _description_
+
+    Returns:
+        _type_: _description_
+    '''   
+    
+    ret = 1 
+    
     main_string_dict = {
         'save_file': '../data/alphabets.txt',
         'log_success': f'Successfully loaded custom alphabet set from {alpha_file}',
@@ -88,14 +134,16 @@ def main( alpha_set: str, mode: str, message: str, key: str, log: Logger ) -> No
     if mode == 'e':
         print( main_string_dict['entered_message'] )  # string replaced for readability
         print("Encrypted message: ", poly_vigenere_encrypt(message, key, alphabets))
+        ret = 0
     elif mode == 'd':
         print( main_string_dict['entered_message'] ) # string replaced for readability
         print("Decrypted message: ", poly_vigenere_decrypt(message, key, alphabets))
+        ret = 0
     else:
         print( main_string_dict['invalid_mode'] ) # string replaced for readability
         exit( 1 )
     
-    return 0
+    return ret
 
 if __name__ == '__main__':
     log = Logger( )
