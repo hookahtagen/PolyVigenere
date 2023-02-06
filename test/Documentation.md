@@ -113,26 +113,26 @@ hendrik@example:~$
 ```
 <br>
 Explanation: <br>
-Call the program with ```python3 Vigenere2.0.py``` . <br>
+Call the program with <span style="color:yellow; background-color:#212729">python3 Vigenere2.0.py</span> . <br>
 Then you'll be asked if you wanna use the default alphabet set or a custom one. <br>
-The default alphabet set is the one that is stored in ```console /src/polyAlpha.py``` . <br>
+The default alphabet set is the one that is stored in <span style="color:yellow; background-color:#212729">/src/polyAlpha.py</span> . <br>
 You can also use a custom alphabet set if you want to. But i don't recommend it for now, as <br>
 it's not really tested yet. <br>
 <br>
 Then you'll be asked if you wanna encrypt or decrypt a message. <br>
-Do so by entering ```console e``` for encrypt or ```console d``` for decrypt. <br>
+Do so by entering <span style="color:yellow; background-color:#212729">e</span> for encrypt or <span style="color:yellow; background-color:#212729">d</span> for decrypt. <br>
 <br>
 After that you'll be asked to enter a message. <br>
 Enter the message you wanna encrypt or decrypt. <br>
 <br>
 Then you'll be asked to enter a key. <br>
 Enter the key you wanna use. <br>
-In this example i used the key ```console ACBDLJ``` . <br>
+In this example i used the key <span style="color:yellow; background-color:#212729"> ACBDLJ</span> . <br>
 But as i said, the key is actually hidden in the terminal and this is just for demonstration purposes. <br>
 
 ### Example polyAlpha.py
 
-```python
+```console
 hendrik@example:$ /bin/python3 /home/hendrik/Documents/Github/PolyVigenere/src/polyAlpha.py
 How many alphabets do you want to generate? > 20
 Below you'll find the generated alphabets:
