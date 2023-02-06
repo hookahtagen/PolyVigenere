@@ -100,6 +100,9 @@ the [Example polyAlpha.py](#example-polyalphapy) section. <br>
 That's it. You can now use PolyVigenere. <br>
 
 ### Example Vigenre2.0.py
+<sup>
+    <hr>
+</sup>
 
 ```console
 hendrik@example:~$ /bin/python3 /home/hendrik/Documents/Github/PolyVigenere/src/Vigenere2.0.py
@@ -112,13 +115,8 @@ Entered message: therussiansarecoming
 Encrypted message:  RVNEBEHYPMLDOYVHXYYR
 hendrik@example:~$ 
 ```
-<br>
 
 #### Explanation: <br>
-
-<sup> 
-    <hr> 
-</sup>
 
 Call the program with <br>
 
@@ -155,6 +153,9 @@ ACBDLJ
 But as i said, the key is actually hidden in the terminal and this is just for demonstration purposes. <br>
 
 ### Example polyAlpha.py
+<sup>
+    <hr>
+</sup>
 
 ```console
 hendrik@example:$ /bin/python3 /home/hendrik/Documents/Github/PolyVigenere/src/polyAlpha.py
