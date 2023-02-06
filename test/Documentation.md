@@ -116,6 +116,8 @@ Encrypted message:  RVNEBEHYPMLDOYVHXYYR
 hendrik@example:~$ 
 ```
 
+<br>
+
 #### Explanation: <br>
 
 Call the program with <br>
