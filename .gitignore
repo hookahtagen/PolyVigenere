@@ -1,2 +1,3 @@
 .vscode/launch.json
-src/__pycache__/polyAlpha.cpython-310.pyc
+src/__pycache__/
+.vscode/
