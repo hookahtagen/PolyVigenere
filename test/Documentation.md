@@ -126,22 +126,18 @@ Call the program with <br>
 hendrik@example:~$ python3 Vigenere2.0.py
 ``` 
 
-Then you'll be asked if you wanna use the default alphabet set or a custom one. <br>
-The default alphabet set is the one that is stored in ```/src/polyAlpha.py``` .<br>
-<br>
-But you don't have to worry about that. You can also use a custom alphabet set if you want to. 
-But i don't recommend it for now, as it's not really tested yet. <br>
-<br>
-Then you'll be asked if you wanna encrypt or decrypt a message. <br>
++ Then you'll be asked if you wanna use the default alphabet set or a custom one.
+The default alphabet set is the one that is stored in ```/src/polyAlpha.py``` .
++ But you don't have to worry about that. You can also use a custom alphabet set if you want to. 
+But i don't recommend it for now, as it's not really tested yet. 
++ Then you'll be asked if you wanna encrypt or decrypt a message. 
 Do so by entering ```e``` for encrypt or ```d``` for decrypt.
-<br>
-
-After that you'll be asked to enter a message. <br>
-Enter the message you wanna encrypt or decrypt. <br>
-<br>
-Then you'll be asked to enter a key. Enter the key you wanna use. In this example i used the key ```ACBDLJ``` <br>
-But as i said, the key is actually hidden in the terminal and this is just for demonstration purposes. <br>
-<br>
++ After that you'll be asked to enter a message. 
+Enter the message you wanna encrypt or decrypt. 
++ Then you'll be asked to enter a key. Enter the key you wanna use. In this example i used the key ```ACBDLJ``` .
+But as i said, the key is actually hidden in the terminal and this is just for demonstration purposes.
++ After that you'll see the entered message and the encrypted message.
++ Et vvoila. You're done. You can now see the encrypted message.
 
 ### Example polyAlpha.py
 <sup>
