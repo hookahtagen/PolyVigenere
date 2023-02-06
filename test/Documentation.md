@@ -113,26 +113,40 @@ hendrik@example:~$
 ```
 <br>
 Explanation: <br>
-Call the program with 
+Call the program with <br>
 
 ```console
 hendrik@example:~$ python3 Vigenere2.0.py
 ``` 
 <br>
 Then you'll be asked if you wanna use the default alphabet set or a custom one. <br>
-The default alphabet set is the one that is stored in ```diff ! /src/polyAlpha.py``` . <br>
+The default alphabet set is the one that is stored in 
+
+```console  
+/src/polyAlpha.py
+```
+<br>
 You can also use a custom alphabet set if you want to. But i don't recommend it for now, as <br>
 it's not really tested yet. <br>
 <br>
 Then you'll be asked if you wanna encrypt or decrypt a message. <br>
-Do so by entering ```diff ! e``` for encrypt or ```diff ! d``` for decrypt. <br>
+Do so by entering
+ 
+```console 
+e for encrypt or d for decrypt.
+```
 <br>
 After that you'll be asked to enter a message. <br>
 Enter the message you wanna encrypt or decrypt. <br>
 <br>
 Then you'll be asked to enter a key. <br>
 Enter the key you wanna use. <br>
-In this example i used the key ```diff !  ACBDLJ``` . <br>
+In this example i used the key 
+
+```consle
+ACBDLJ
+```
+<br>
 But as i said, the key is actually hidden in the terminal and this is just for demonstration purposes. <br>
 
 ### Example polyAlpha.py
