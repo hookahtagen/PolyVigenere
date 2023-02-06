@@ -120,12 +120,7 @@ hendrik@example:~$
 
 #### Explanation: <br>
 
-Call the program with <br>
-
-```console
-hendrik@example:~$ python3 Vigenere2.0.py
-``` 
-
++ Call the program with ```hendrik@example:~$ python3 Vigenere2.0.py``` 
 + Then you'll be asked if you wanna use the default alphabet set or a custom one.
 The default alphabet set is the one that is stored in ```/src/polyAlpha.py``` .
 + But you don't have to worry about that. You can also use a custom alphabet set if you want to. 
