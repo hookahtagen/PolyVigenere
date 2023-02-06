@@ -10,7 +10,7 @@ Table of Contents ( TOC )
     - [Installation](#installation)
     - [Quickstart](#quickstart)
     - [Example Vigenre2.0.py](#example-vigenre20py)
-        - [Explanation: ](#explanation-)
+      - [Explanation: ](#explanation-)
     - [Example polyAlpha.py](#example-polyalphapy)
   
 
@@ -114,7 +114,7 @@ hendrik@example:~$
 ```
 <br>
 
-##### Explanation: <br>
+#### Explanation: <br>
 Call the program with <br><br>
 
 ```console
