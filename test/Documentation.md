@@ -100,7 +100,7 @@ That's it. You can now use PolyVigenere. <br>
 
 ### Example Vigenre2.0.py
 
-```python
+```console
 hendrik@example:~$ /bin/python3 /home/hendrik/Documents/Github/PolyVigenere/src/Vigenere2.0.py
 Do you wanna use the default alphabet set or use a custom one? (d/c) > d
 Enter 'e' for encrypt or 'd' for decrypt: e
