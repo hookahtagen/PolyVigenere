@@ -2,6 +2,10 @@
 
 ![vignere-cipher](https://steamuserimages-a.akamaihd.net/ugc/781867089027223194/99CFD48BB59612E4F6FECD0600EBE920BED846B6/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false) [^vigenere-cipher]
 
+## Documentation:<br>
+
+For information on how to use the program, please refer to the [Documentation.md](#documentation) file. <br><br>
+
 ## Description:<br>
 
 This program allows for enciphering and deciphering of plaintext messages using a polyalphabetic cipher. The program uses an alphabet dictionary <br>
