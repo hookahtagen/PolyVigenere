@@ -12,6 +12,7 @@ Table of Contents ( TOC )
     - [Example Vigenre2.0.py](#example-vigenre20py)
       - [Explanation:](#explanation)
     - [Example polyAlpha.py](#example-polyalphapy)
+      - [Explanation:](#explanation-1)
   
 
 # Introduction
@@ -132,6 +133,8 @@ But as i said, the key is actually hidden in the terminal and this is just for d
 + After that you'll see the entered message and the encrypted message.
 + Et vvoila. You're done. You can now see the encrypted message.
 
+<br>
+
 ### Example polyAlpha.py
 <sup>
     <hr>
@@ -175,3 +178,13 @@ the contents of alphabets.txt, found in '/data' to
 the variable 'alphabets' in the file 'polyAlpha.py' found in '/src'.
 hendrik@example:$ 
 ```
+
+#### Explanation:
+
++ Call the program with ```hendrik@example:$ python3 polyAlpha.py```
++ You'll then be asked how many alphabets you wanna generate.
++ Then you'll see the generated alphabets and you'll be asked if you wanna save them.
++ If you enter ```y``` , the alphabets will be saved to ```/data/alphabets.txt``` .
++ If you enter ```n``` , the alphabets will not be saved and the program will exit.
++ After all you'll see a note. This note tells you that you have to copy the contents of ```/data/alphabets.txt``` 
+  to the variable ```alphabets``` in ```/src/polyAlpha.py``` .
