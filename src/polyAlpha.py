@@ -38,7 +38,34 @@ class Logger:
 
 class Alphabet:
     
-    alphabets = {'Alpha_I': 'GAVHRIEJSWFYNQPTUDCMZKXLBO', 'Alpha_II': 'XCAJWYUGQMLHPVZKTFREOSBNDI', 'Alpha_III': 'OUIEZGFSHMKCBLYTPANVRWDJXQ', 'Alpha_IV': 'EAIFXRSPCNTUVHGDBYQMJKZWOL', 'Alpha_V': 'HTWBZJFRNYXOVUQCDPIAESGKLM', 'Alpha_VI': 'OKRXZLPSQHNJUMBTIYDWEVFGCA', 'Alpha_VII': 'CGRDETNAMUZIXQSPFKOYJLBHWV', 'Alpha_VIII': 'BCKJRULFOHADSWMYXZVTQGPENI', 'Alpha_IX': 'UNOIWSLRFMYVDGBEHZQJXCAPKT', 'Alpha_X': 'NTEGWCXHIRQZDFOJLAKYBMSPUV'}
+    alphabets = {
+        'A' : 'COKWMJXVYTRBQFNIDHASLZPEGU', 
+        'B' : 'UYQXGRTSKOHVJEADNZMIBWCFPL',
+        'C' : 'ZIQFCJYENVPMROBDUWTGHXSALK',
+        'D' : 'AWSHKFJVZBUPILGMQODNREYCTX',
+        'E' : 'FSLPZKEXANUBJDTQIOMRHCVYWG',
+        'F' : 'RBVQNPOHMLXFATKWCZDYUSEIJG',
+        'G' : 'ATMXCEKBRIDSHZFPWNLOUJGVQY',
+        'H' : 'ACJFEMQXURKPIYSGHZWLOTVBDN',
+        'I' : 'DXZAPHNYFKJBEGILSCOQTRMUVW',
+        'J' : 'HFYBPKILXUQTNMWGRSVOECJAZD',
+        'K' : 'OLNKIUJPMEHBSXVARWYTQFCZDG',
+        'L' : 'JTIDQPXMGLAUOVZCBENFHSYKRW',
+        'M' : 'ZREXSNITOQLJCWBHVGMKPYFUAD',
+        'N' : 'YPROKVDLQUINJFGZMCASHTXBEW',
+        'O' : 'UOFWPNSRYQHTXKICLZMDEABJVG',
+        'P' : 'HRGWLASVQKUFZXBNDJTCEIMOPY',
+        'Q' : 'NBZSHGXVLITJCYKOEDMWUQRPFA',
+        'R' : 'LTDQYFMNCJRHXZGVIEBKUSWAOP',
+        'S' : 'EIVDOBYGQZCJNUAKMRWHXTSPFL',
+        'T' : 'PNKTMAXORCGFJULVSIBYQHWZED',
+        'U' : 'GCRIDEZAMWSQFVYPHOTNULJBKX',
+        'V' : 'CTBQNHAWLXMGZKUPDYOEIVJSFR',
+        'W' : 'HKZMNGPTOIRSABLEVUYJQCFWXD',
+        'X' : 'IWMUFTORKZXCPJLDGBQYSHANVE',
+        'Y' : 'QZEIHNJODVLGFBAWMXKPUTYRSC',
+        'Z' : 'YRKHJNZVSAXLQPWIGTEUFBCOMD' 
+    }
 
     def __init__( self, key: str ) -> None:
         self.key = key 
@@ -59,33 +86,47 @@ class Alphabet:
     def generate_alphabet( self, abc_count = 4 ):
         abc = ''
         abc_dict = { }
-        
-        def getRoman( number ):
-            num = [ 1, 4, 5, 9, 10, 40, 50, 90,
-                   100, 400, 500, 900, 1000 ]
-            sym = [ "I", "IV", "V", "IX", "X", "XL",
-                   "L", "XC", "C", "CD", "D", "CM", "M" ]
-            i = 12
-            roman_number = ''
-      
-            while number:
-                div = number // num[ i ]
-                number %= num[ i ]
-  
-                while div:
-                    roman_number += sym[ i ]
-                    #;print(sym[i], end = " ")
-                    #print('\n')
-                    div -= 1
-                i -= 1
-        
-            return roman_number
+    
+        def getKey_value( number: int ) -> str:
+            val_dict = {
+                '1' :'A',
+                '2' :'B',
+                '3' :'C',
+                '4' :'D',
+                '5' :'E',
+                '6' :'F',
+                '7' :'G',
+                '8' :'H',
+                '9' :'I',
+                '10':'J',
+                '11':'K',
+                '12':'L',
+                '13':'M',
+                '14':'N',
+                '15':'O',
+                '16':'P',
+                '17':'Q',
+                '18':'R',
+                '19':'S',
+                '20':'T',
+                '21':'U',
+                '22':'V',
+                '23':'W',
+                '24':'X',
+                '25':'Y',
+                '26':'Z'
+            }
+            
+            key_name = val_dict[ str( number ) ]
+            
+            return key_name
         
         for i in range( abc_count ):
             abc = list( string.ascii_uppercase )
             rnd.shuffle(abc)
-            roman_num = getRoman( i + 1 )
-            abc_dict[ f'Alpha_{ roman_num }' ] = ''.join( abc )
+            # roman_num = getKey_value( i + 1 )
+            key_name = getKey_value( i + 1 )
+            abc_dict[ f'{ key_name }' ] = ''.join( abc )
         
         return abc_dict
     
@@ -113,7 +154,13 @@ def main( log: Logger ) -> None:
     abc = Alphabet( '0' )
     alpha = { }
     
-    abc_count = int( input( 'How many alphabets do you want to generate? > ' ) )
+    in_text = 'How many alphabets do you want to generate? You can choose up to 26 alphabets. Num alphabets> '
+    abc_count = int( input( in_text ) )
+    if abc_count > 26:
+        print( 'You can only generate up to 26 alphabets!' )
+        print( 'The limit has been set to 26 alphabets.' )
+        
+        abc_count = 26
     alpha = abc.generate_alphabet( abc_count )
     
     print( 'Below you\'ll find the generated alphabets:\n' )

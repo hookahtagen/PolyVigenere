@@ -76,11 +76,13 @@ The following **example** shows the program being used to encipher the message "
 
 ```console
 hendrik@example:~$ /bin/python3 /home/hendrik/Documents/Github/PolyVigenere/src/Vigenere2.0.py
+Do you wanna use the default alphabet set or use a custom one? (d/c) > d
 Enter 'e' for encrypt or 'd' for decrypt: e
 Enter message: therussiansarecoming
-Enter key: abcdefg (<- Is actually hidden in the terminal)
+Example key: 'ACBDLJ'
+Enter key: ACBDLJ (<-- Is actually hidden in the terminal)
 Entered message: therussiansarecoming
-Encrypted message:  YWIHPXWBJYOWDKJEURHV
+Encrypted message:  RVNEBEHYPMLDOYVHXYYR
 ```
 
 <br>
