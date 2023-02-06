@@ -115,6 +115,7 @@ hendrik@example:~$
 <br>
 
 #### Explanation: <br>
+<sup> <hr> </sup>
 Call the program with <br>
 
 ```console
