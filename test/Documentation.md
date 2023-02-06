@@ -1,7 +1,7 @@
 Table of Contents ( TOC )
 - [Introduction](#introduction)
   - [About the author](#about-the-author)
-  - [Why did I write this?](#why-did-i-write-this)
+    - [Why did I write this?](#why-did-i-write-this)
   - [What is a polyalphabetic cipher?](#what-is-a-polyalphabetic-cipher)
     - [How does it work?](#how-does-it-work)
 
@@ -29,7 +29,7 @@ If i don't answer you within a few days, please contact me again. I might have m
 Or i don't wanna talk to you. :D<br>
 <br><br>
 
-## Why did I write this?
+### Why did I write this?
 
 That is easy to say:<br>
 I wrote this program because i wanted to learn more about python and i wanted to learn more about cryptography.<br>
