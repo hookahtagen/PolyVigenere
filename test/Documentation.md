@@ -2,8 +2,8 @@ Table of Contents ( TOC )
 - [Introduction](#introduction)
   - [About the author](#about-the-author)
   - [Why did I write this?](#why-did-i-write-this)
-- [What is a polyalphabetic cipher?](#what-is-a-polyalphabetic-cipher)
-  - [How does it work?](#how-does-it-work)
+  - [What is a polyalphabetic cipher?](#what-is-a-polyalphabetic-cipher)
+    - [How does it work?](#how-does-it-work)
 
   
 
@@ -40,14 +40,14 @@ But if you think otherwise, feel free to tell me. I'm always open for criticism.
 And if you have any ideas for improvements, feel free to tell me. I'm always open for suggestions.<br>
 <br><br>
 
-# What is a polyalphabetic cipher?
+## What is a polyalphabetic cipher?
 
 A polyalphabetic cipher is a type of encryption technique used in cryptography that substitutes one letter of the plaintext <br> 
 with multiple different ciphertext letters. Unlike monoalphabetic ciphers, which use a single fixed substitution for all letters, <br> 
 a polyalphabetic cipher uses multiple substitution alphabets to encrypt the message, making it more secure and difficult to crack. <br>
 <br>
 
-## How does it work?
+### How does it work?
 
 The functioning of a polyalphabetic cipher can be understood as follows: The plaintext message is divided into blocks and for each block, <br>
 a substitution alphabet is chosen based on the position of a letter in a keyword. The letter in the plaintext is then replaced with its <br>
