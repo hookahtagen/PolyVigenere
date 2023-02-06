@@ -113,21 +113,21 @@ hendrik@example:~$
 ```
 <br>
 Explanation: <br>
-Call the program with <span style="color:yellow; background-color:#212729">python3 Vigenere2.0.py</span> . <br>
+Call the program with <p style="color:yellow; background-color:#212729">python3 Vigenere2.0.py</p> . <br>
 Then you'll be asked if you wanna use the default alphabet set or a custom one. <br>
-The default alphabet set is the one that is stored in <span style="color:yellow; background-color:#212729">/src/polyAlpha.py</span> . <br>
+The default alphabet set is the one that is stored in <p style="color:yellow; background-color:#212729">/src/polyAlpha.py</p> . <br>
 You can also use a custom alphabet set if you want to. But i don't recommend it for now, as <br>
 it's not really tested yet. <br>
 <br>
 Then you'll be asked if you wanna encrypt or decrypt a message. <br>
-Do so by entering <span style="color:yellow; background-color:#212729">e</span> for encrypt or <span style="color:yellow; background-color:#212729">d</span> for decrypt. <br>
+Do so by entering <p style="color:yellow; background-color:#212729">e</p> for encrypt or <p style="color:yellow; background-color:#212729">d</p> for decrypt. <br>
 <br>
 After that you'll be asked to enter a message. <br>
 Enter the message you wanna encrypt or decrypt. <br>
 <br>
 Then you'll be asked to enter a key. <br>
 Enter the key you wanna use. <br>
-In this example i used the key <span style="color:yellow; background-color:#212729"> ACBDLJ</span> . <br>
+In this example i used the key <p style="color:yellow; background-color:#212729"> ACBDLJ</p> . <br>
 But as i said, the key is actually hidden in the terminal and this is just for demonstration purposes. <br>
 
 ### Example polyAlpha.py
