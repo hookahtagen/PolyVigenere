@@ -38,8 +38,9 @@ def poly_vigenere_encrypt(plaintext, key, alphabets):
     key_index = 0
     for char in plaintext:
         if char.upper() in alphabets[key[key_index % len(key)]]:
-            char_index = alphabets[key[key_index % len(key)]].find(char.upper())
-            ciphertext += alphabets[key[key_index % len(key)]][(char_index + 1) % len(alphabets[key[key_index % len(key)]])]
+            key_char = key[key_index % len(key)]
+            char_index = alphabets[key_char].find(char.upper())
+            ciphertext += alphabets[key_char][(char_index + 1) % len(alphabets[key_char])]
         else:
             ciphertext += char
         key_index += 1
@@ -49,20 +50,20 @@ def poly_vigenere_decrypt(ciphertext, key, alphabets):
     plaintext = ""
     key_index = 0
     for char in ciphertext:
-        if char in alphabets[key[key_index % len(key)]]:
+        char_index = alphabets[key[key_index % len(key)]].find(char)
+        if char_index != -1:
             plaintext += alphabets[key[key_index % len(key)]][alphabets[key[key_index % len(key)]].find(char) - 1]
         else:
             plaintext += char
         key_index += 1
     return plaintext
 
-
 def main( alpha_set: str, mode: str, message: str, key: str, log: Logger ) -> None:
     
     if alpha_set == 'd':
         abc = Alphabet( key )
         alphabets = abc.polyalphabet
-    else:
+    elif alpha_set == 'c':
         alpha_file = '../data/alphabets.txt'
         alphabets: dict[str, str] = { }
         
@@ -73,6 +74,9 @@ def main( alpha_set: str, mode: str, message: str, key: str, log: Logger ) -> No
                 alphabets[ key ] = value
                 
         log.info( f'Successfully loaded custom alphabet set from {alpha_file}' )
+    else:
+        log.warning( f'Invalid alphabet set: {alpha_set} (must be \'d\' or \'c\')' )
+        exit( 1 )
     
     if mode == 'e':
         print(f'Entered message: {message}')
@@ -89,7 +93,7 @@ if __name__ == '__main__':
     
     alpha_set = input( "Do you wanna use the default alphabet set or use a custom one? (d/c) > " ).lower()
     mode = input("Enter \'e' for encrypt or \'d' for decrypt: ").lower()
-    message = input("Enter message: ")
+    message = input("Enter message: ").upper()
     print( 'Example key: \'ABCFTGJ\'')
     key = getpass.getpass("Enter key: ").upper()
     
