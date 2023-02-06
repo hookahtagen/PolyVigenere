@@ -27,7 +27,7 @@ If you want to contact me, or if you have any questions, feel free to do so.<br>
 You can talk to me on [Telegram](https://t.me/hendrik_gerhardt) or you can send me an email.<br>
 If i don't answer you within a few days, please contact me again. I might have missed your message.<br>
 Or i don't wanna talk to you. :D<br>
-<br><br><br>
+<br><br>
 
 ## Why did I write this?
 
@@ -38,7 +38,7 @@ And hey, i did. And i think it turned out pretty good.<br>
 <br>
 But if you think otherwise, feel free to tell me. I'm always open for criticism.<br>
 And if you have any ideas for improvements, feel free to tell me. I'm always open for suggestions.<br>
-<br><br><br>
+<br><br>
 
 # What is a polyalphabetic cipher?
 
