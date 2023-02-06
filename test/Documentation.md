@@ -10,6 +10,7 @@ Table of Contents ( TOC )
     - [Installation](#installation)
     - [Quickstart](#quickstart)
     - [Example Vigenre2.0.py](#example-vigenre20py)
+    - [Example polyAlpha.py](#example-polyalphapy)
   
 
 # Introduction
@@ -113,9 +114,11 @@ hendrik@example:~$
 <br>
 Explanation: <br>
 Call the program with 
+
 ```console
 hendrik@example:~$ python3 Vigenere2.0.py
-``` . <br>
+``` 
+<br>
 Then you'll be asked if you wanna use the default alphabet set or a custom one. <br>
 The default alphabet set is the one that is stored in ```diff ! /src/polyAlpha.py``` . <br>
 You can also use a custom alphabet set if you want to. But i don't recommend it for now, as <br>
