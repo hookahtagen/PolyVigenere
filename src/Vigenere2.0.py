@@ -1,5 +1,4 @@
 import getpass
-import json
 import logging
 from polyAlpha import Alphabet
 
@@ -139,7 +138,7 @@ def main( log: Logger ) -> None:
         key = in_settings[ 'key' ].upper( )
             
     elif not settings_file:
-        key = input( "Enter the key: " ).upper( )
+        key = getpass.getpass( "Enter the key: " ).upper( )
         
     if not file_enc:
         message = input( "Enter the message: " )
@@ -164,4 +163,3 @@ if __name__ == '__main__':
     ret = main( log )
     
     exit( ret )
-    
