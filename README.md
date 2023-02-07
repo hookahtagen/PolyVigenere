@@ -6,7 +6,7 @@
 
 <br>
 
-For information on how to use the program, please refer to the [Documentation.md](/test/Documentation.md). <br><br>
+For information on how to use the program, please refer to the [Documentation.md](/doc/Documentation.md). <br><br>
 
 ## Description:<br>
 
