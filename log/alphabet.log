@@ -9,3 +9,27 @@
 2023-02-06 17:24:44,400 - __main__ - INFO - Wrote 26 alphabets to '../data/alphabets.txt'.
 2023-02-06 19:47:21,761 - __main__ - INFO - Success!
 2023-02-06 19:47:21,761 - __main__ - INFO - Wrote 26 alphabets to '../data/alphabets.txt'.
+2023-02-07 10:26:18,451 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 10:26:51,881 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 10:28:07,539 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 10:29:06,957 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 10:31:57,130 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 10:32:47,911 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 10:33:34,931 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 10:36:21,807 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 10:37:21,312 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 10:38:04,960 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 10:38:14,643 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 10:55:27,075 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 10:57:42,290 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 11:31:08,817 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 11:31:58,209 - __main__ - INFO - Loading settings from ../data/settings.cfg
+2023-02-07 12:25:29,392 - __main__ - INFO - Machine Initialized
+2023-02-07 12:26:00,579 - __main__ - INFO - File Encrypted and saved successfully
+2023-02-07 12:27:45,503 - __main__ - INFO - Machine Initialized
+2023-02-07 12:28:11,171 - __main__ - INFO - File %s and saved successfully
+2023-02-07 12:28:46,268 - __main__ - INFO - Machine Initialized
+2023-02-07 12:29:02,300 - __main__ - INFO - File %s and saved successfully
+2023-02-07 12:29:40,073 - __main__ - INFO - Machine Initialized
+2023-02-07 12:42:28,296 - __main__ - INFO - Machine Initialized
+2023-02-07 12:42:39,476 - __main__ - INFO - Processed Message: AAKXRNEBUU
