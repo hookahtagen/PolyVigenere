@@ -47,3 +47,133 @@
 2023-02-07 22:09:52,920 - __main__ - INFO - Machine Initialized
 2023-02-07 22:19:40,955 - __main__ - INFO - Machine Initialized
 2023-02-07 22:21:02,699 - __main__ - INFO - Machine Initialized
+2023-02-08 22:09:39,906 - __main__ - INFO - Machine Initialized
+2023-02-08 22:10:11,397 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:10:42,116 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:10:42,116 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:10:42,116 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:11:17,806 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:11:42,210 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:12:03,187 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:12:03,188 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:12:03,188 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:12:11,490 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:13:04,311 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:13:04,312 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:13:04,312 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:13:13,888 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:13:13,889 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:13:13,889 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:13:13,889 - __main__ - INFO - Valid: True
+2023-02-08 22:23:09,138 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:23:09,138 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:23:09,138 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:23:09,138 - __main__ - INFO - Valid: True
+2023-02-08 22:23:25,180 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:23:25,180 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:23:25,180 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:23:25,180 - __main__ - INFO - Valid: True
+2023-02-08 22:23:39,787 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:23:39,787 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:23:39,788 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:23:39,788 - __main__ - INFO - Valid: True
+2023-02-08 22:23:40,203 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:23:40,203 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:23:40,204 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:23:40,204 - __main__ - INFO - Valid: True
+2023-02-08 22:24:38,291 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:24:38,291 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:24:38,291 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:24:38,291 - __main__ - INFO - Valid: True
+2023-02-08 22:25:13,277 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:25:13,278 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:25:13,278 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:25:13,278 - __main__ - INFO - Valid: True
+2023-02-08 22:25:21,526 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:25:21,526 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:25:21,529 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:25:21,530 - __main__ - INFO - Valid: True
+2023-02-08 22:25:25,995 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:25:25,995 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:25:25,995 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:25:25,995 - __main__ - INFO - Valid: True
+2023-02-08 22:25:26,493 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:25:26,494 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:25:26,494 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:25:26,494 - __main__ - INFO - Valid: True
+2023-02-08 22:25:30,472 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:25:30,473 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:25:30,473 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:25:30,473 - __main__ - INFO - Valid: True
+2023-02-08 22:25:32,314 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:25:32,314 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:25:32,314 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:25:32,315 - __main__ - INFO - Valid: True
+2023-02-08 22:25:37,553 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:25:37,553 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:25:37,553 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:25:37,553 - __main__ - INFO - Valid: True
+2023-02-08 22:26:26,765 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:26:26,765 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:26:26,765 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:26:26,766 - __main__ - INFO - Valid: True
+2023-02-08 22:26:28,263 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:26:28,263 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:26:28,263 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:26:28,263 - __main__ - INFO - Valid: True
+2023-02-08 22:26:47,084 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:26:47,084 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:26:47,085 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:26:47,085 - __main__ - INFO - Valid: True
+2023-02-08 22:26:47,539 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:26:47,539 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:26:47,540 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:26:47,540 - __main__ - INFO - Valid: True
+2023-02-08 22:26:48,657 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:26:48,658 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:26:48,658 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:26:48,658 - __main__ - INFO - Valid: True
+2023-02-08 22:26:53,654 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:26:53,654 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:26:53,655 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:26:53,655 - __main__ - INFO - Valid: True
+2023-02-08 22:27:46,012 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:27:46,013 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:27:46,013 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:27:46,013 - __main__ - INFO - Valid: True
+2023-02-08 22:28:03,458 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:28:03,459 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:28:03,460 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:28:03,460 - __main__ - INFO - Valid: True
+2023-02-08 22:28:04,797 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:28:04,797 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:28:04,797 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:28:04,797 - __main__ - INFO - Valid: True
+2023-02-08 22:28:05,191 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:28:05,191 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:28:05,191 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:28:05,191 - __main__ - INFO - Valid: True
+2023-02-08 22:28:05,639 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:28:05,639 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:28:05,639 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:28:05,639 - __main__ - INFO - Valid: True
+2023-02-08 22:28:08,150 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:28:08,150 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:28:08,150 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:28:08,150 - __main__ - INFO - Valid: True
+2023-02-08 22:28:09,892 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:28:09,892 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:28:09,892 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:28:09,892 - __main__ - INFO - Valid: True
+2023-02-08 22:28:15,490 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:28:15,490 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:28:15,490 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:28:15,490 - __main__ - INFO - Valid: True
+2023-02-08 22:28:17,748 - __main__ - INFO - Bypassing the main function
+2023-02-08 22:28:17,748 - __main__ - INFO - Encrypted Message: b'Hello World'
+2023-02-08 22:28:17,748 - __main__ - INFO - Message Integrity Code: 8924ff7b9ce39dad74533b6b6d68cabf36cec2c845ab2fa4362c9554bbfef2db
+2023-02-08 22:28:17,748 - __main__ - INFO - Valid: True
+2023-02-08 22:28:28,554 - __main__ - INFO - Machine Initialized
+2023-02-08 22:28:29,168 - __main__ - INFO - Machine Initialized
+2023-02-08 22:28:46,536 - __main__ - INFO - Processed Message: AAKGM MHOGT
+2023-02-08 22:28:46,537 - __main__ - INFO - Message Integrity Code: 9bbf7819b73ecdb147a5b4cd652f426ef9c9914751c5bcef4e6dca23edc2bb45

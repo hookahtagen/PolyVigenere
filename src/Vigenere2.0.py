@@ -1,4 +1,6 @@
+import argparse
 import getpass
+import hmac
 import logging
 from polyAlpha import Alphabet
 
@@ -39,7 +41,7 @@ class Machine:
         self.initialized = "Machine Initialized"
         return None
         
-    def process_message( self, mode: str, key: str, message: str, file_enc: bool, file_name: str ) -> str:
+    def process_message( self, mode: str, key: str, message: str, file_enc: bool, file_name: str ) -> tuple[str, str]:
         self.mode = mode
         self.key = key
         self.message = message
@@ -51,11 +53,12 @@ class Machine:
         
         if self.mode == 'e':
             self.processed_message = self.poly_vigenere_encrypt( self.message, self.key, self.alphabets )
+            _, self.mic = self.CIV( self.processed_message, self.key )
         elif self.mode == 'd':
             self.processed_message = self.poly_vigenere_decrypt( self.message, self.key, self.alphabets )
         
         if not self.file_enc:
-            return self.processed_message
+            return self.processed_message, self.mic
         else:
             with open( file_name.replace('.txt','_enc.txt'), 'w' ) as file:
                 file.write( self.processed_message )
@@ -116,18 +119,60 @@ class Machine:
                 plaintext += char
             key_index += 1
         return plaintext
+    
+    def CIV(self, message: str, key: str) -> tuple[str, str]:
+        """
+        Encrypt the message and compute a Message Integrity Code (MIC) to ensure the authenticity of the encrypted message.
+        """
+        # Encrypt the message
+        b_key = key.encode()
+        encrypted_message = message.encode()
+        
+        # Compute the Message Integrity Code (MIC)
+        mic = hmac.new(b_key, encrypted_message, digestmod='sha256')
+        mic = mic.hexdigest()
+        
+        # Return the encrypted message and the MIC
+        return encrypted_message, mic
+
+    def verify_CIV(self, encrypted_message, mic, key):
+        """
+        Verify the authenticity of the encrypted message using the Message Integrity Code (MIC).
+        """
+        b_key = key.encode()
+        # Compute the Message Integrity Code (MIC)
+        computed_mic = hmac.new(b_key, encrypted_message, digestmod='sha256')
+        computed_mic = computed_mic.hexdigest()
+    
+        # Compare the computed MIC with the original MIC
+        if mic == computed_mic:
+            # If they match, the message is authentic
+            return True
+        else:
+            # If they don't match, the message has been tampered with
+            return False
 
 def main( log: Logger ) -> None:     
     ret = 1
     machine = Machine( )
+    main_str_dict: dict[ str, str ] = {
+        'Welcome_message': 'Welcome to the PolyVigenere Machine',
+        'settings_file': 'You have either the option to use the settings file or enter the settings manually',
+        'use_settings_file': 'Do you want to use the settings file? (y/n): ',
+        'file_enc': 'Do you want to encrypt or decrypt a file? (y/n): ',
+        'mode': 'Do you want to encrypt or decrypt a message? (e/d): ',
+        'key': 'Enter the key: ',
+        'message': 'Enter the message: ',
+        'file_name': 'Enter the file name: ',
+    }
     log.info( machine.initialized )
+
+    print( main_str_dict[ 'Welcome_message' ] )
+    print( main_str_dict[ 'settings_file' ] )
+    settings_file: bool = True if input( main_str_dict['use_settings_file'] ) == 'y' else False
     
-    print( "Welcome to the PolyVigenere Machine" )
-    print( "You have either the option to use the settings file or enter the settings manually")
-    settings_file: bool = True if input( "Do you want to use the settings file? (y/n): ") == 'y' else False
-    
-    file_enc: bool = True if input( "Do you want to encrypt or decrypt a file? (y/n): ") == 'y' else False
-    mode = input( "Do you want to encrypt or decrypt a message? (e/d): " )
+    file_enc: bool = True if input( main_str_dict['file_enc'] ) == 'y' else False
+    mode = input( main_str_dict['mode'] )
     if settings_file:
         in_settings: dict[ str, str ] = { }
         with open( '../data/settings.cfg', 'r' ) as in_file:
@@ -138,19 +183,20 @@ def main( log: Logger ) -> None:
         key = in_settings[ 'key' ].upper( )
             
     elif not settings_file:
-        key = getpass.getpass( "Enter the key: " ).upper( )
+        key = getpass.getpass( main_str_dict['key'] ).upper( )
         
     if not file_enc:
-        message = input( "Enter the message: " )
-        p_message = machine.process_message( mode, key, message, file_enc, None )
+        message = input( main_str_dict['message'] )
+        p_message, mic = machine.process_message( mode, key, message, file_enc, None )
         log.info( f'Processed Message: {p_message}')
+        log.info( f'Message Integrity Code: {mic}' )
         
         ret = 0
     else:
-        file_name = input( "Enter the file name: " )
+        file_name = input( main_str_dict['file_name'] )
         with open( file_name, 'r' ) as file:
             message = file.read( )
-        p_message = machine.process_message( mode, key, message, file_enc, file_name )
+        p_message, mic = machine.process_message( mode, key, message, file_enc, file_name )
         
         log.info( p_message )
 
@@ -158,8 +204,32 @@ def main( log: Logger ) -> None:
 
     return ret
 
-if __name__ == '__main__':
-    log = Logger( )    
-    ret = main( log )
+def line_args():
+    help_text_dict = {
+        'verify': 'Verify the authenticity of the encrypted message using the Message Integrity Code (MIC).'
+    }
+    parser = argparse.ArgumentParser( )
+    parser.add_argument( '-v', '--verify', help=help_text_dict['verify'], action='store_true' )
+    args = parser.parse_args( )
     
-    exit( ret )
+    return args.verify
+    
+
+if __name__ == '__main__':
+    verify = line_args( )
+    log = Logger( )    
+    
+    if not verify:
+        ret = main( log )    
+        exit( ret )
+        
+    elif verify:
+        
+        key = getpass.getpass( 'Enter the key: ' ).upper( )
+        message = input( 'Enter the message: ' )
+        mic = input( 'Enter the Message Integrity Code (MIC): ' )
+        
+        machine = Machine( )
+        valid = machine.verify_CIV( message.encode( ), mic, key )
+        
+        log.info( f'Is the message authentic? {valid}' )
