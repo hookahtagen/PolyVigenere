@@ -2,6 +2,7 @@ import argparse
 import getpass
 import hmac
 import logging
+import random
 from polyAlpha import Alphabet
 
 class Logger:
@@ -152,6 +153,21 @@ class Machine:
             # If they don't match, the message has been tampered with
             return False
 
+def format_key( key: str ) -> tuple[ str, str ]:
+    # If the key is smaller than 32 characters,
+    # use the characters in the entered key, expand it
+    # to 32 characters and randomize the 32 characters.
+    # Then return a tuple, containing
+    # 1. the entered key
+    # 2. the randomized key
+    
+    if len( key ) < 32:
+        long_key = key * 32
+        long_key = ''.join( random.sample( long_key, len( long_key ) ) )
+        return key, long_key
+    else:
+        return key, None
+
 def main( log: Logger ) -> None:     
     ret = 1
     machine = Machine( )
@@ -181,24 +197,32 @@ def main( log: Logger ) -> None:
                 a_key, value = line.split( '=' )
                 in_settings[ a_key ] = value
         key = in_settings[ 'key' ].upper( )
+        
+        in_key, key = format_key( key )
             
     elif not settings_file:
         key = getpass.getpass( main_str_dict['key'] ).upper( )
+        in_key, key = format_key( key )
         
     if not file_enc:
         message = input( main_str_dict['message'] )
         p_message, mic = machine.process_message( mode, key, message, file_enc, None )
         log.info( f'Processed Message: {p_message}')
         log.info( f'Message Integrity Code: {mic}' )
+        log.info( f'Entered Key: {in_key}')
+        log.info( f'Key used for encryption: {key}')
         
         ret = 0
-    else:
+    elif file_enc:
         file_name = input( main_str_dict['file_name'] )
         with open( file_name, 'r' ) as file:
             message = file.read( )
         p_message, mic = machine.process_message( mode, key, message, file_enc, file_name )
         
-        log.info( p_message )
+        log.info( f'Processed Message: {p_message}')
+        log.info( f'Message Integrity Code: {mic}' )
+        log.info( f'Entered Key: {in_key}')
+        log.info( f'Key used for encryption: {key}')
 
         ret = 1 
 
