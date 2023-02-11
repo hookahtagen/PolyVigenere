@@ -8,7 +8,9 @@
 
 For information on how to use the program, please refer to the [Documentation.md](/doc/Documentation.md). <br><br>
 
-## Description:<br>
+## Description
+
+<br>
 
 This program allows for enciphering and deciphering of plaintext messages using a polyalphabetic cipher. The program uses an alphabet dictionary <br>
 to define the different alphabets for each character in the key. The key is then used to shift the corresponding character in the plaintext <br>
@@ -32,7 +34,8 @@ alphabets = {
 
 <br>
 
-#### Note:
+#### Note
+
 ====================
 
 In an acutal application it would be unsafe to store the alphabet dictionary in the program itself, as it would be easy for an attacker to find the <br>
@@ -43,7 +46,6 @@ the dictionary from the file. This would wouldn't be a secure method of storing 
 
 For information on how to install the program, please refer to the [Install.md](https://github.com/hookahtagen/PolyVigenere/blob/main/src/Install.md) file. <br><br>
 
-
 ## Get Started:<br>
 
     + Clone the repository to your local machine.
@@ -52,9 +54,7 @@ For information on how to install the program, please refer to the [Install.md](
 
     + Run the Vigenere2.0.py program using Python 3.
 
-
 Et voila! You're ready to go! [^src] <br><br>
-
 
 ## Usage:<br>
 
@@ -72,7 +72,6 @@ Et voila! You're ready to go! [^src] <br><br>
 
     + Note: This program only works with single-character mappings of key characters to
     alphabets, and does not support multiple characters per alphabet.
-
 
 ## Example:<br>
 
@@ -135,14 +134,11 @@ the contents of alphabets.txt, found in '/data' to
 the variable 'alphabets' in the file 'polyAlpha.py'
 ```
 
-
 ## Planned Features:<br>
 
     + Randomize the choice of alphabet for each character in the key.
     + Add support for enciphering/deciphering txt files.
     + 
-
-
 
 <br>
 

@@ -123,52 +123,89 @@ class Machine:
     
     def CIV(self, message: str, key: str) -> tuple[str, str]:
         """
-        Encrypt the message and compute a Message Integrity Code (MIC) to ensure the authenticity of the encrypted message.
+            Description:
+                Encrypt the message and compute a Message Integrity Code (MIC) to ensure the authenticity of the encrypted message.
+            Parameters:
+                message (str): The message to be encrypted.
+                key (str): The key used to encrypt the message.
+            Returns:
+                encrypted_message (str): The encrypted message.
+                mic (str): The Message Integrity Code (MIC) of the encrypted message.
         """
-        # Encrypt the message
+
         b_key = key.encode()
         encrypted_message = message.encode()
         
-        # Compute the Message Integrity Code (MIC)
         mic = hmac.new(b_key, encrypted_message, digestmod='sha256')
         mic = mic.hexdigest()
-        
-        # Return the encrypted message and the MIC
+
         return encrypted_message, mic
 
-    def verify_CIV(self, encrypted_message, mic, key):
+    def verify_CIV(self, encrypted_message, mic, key) -> bool:
         """
-        Verify the authenticity of the encrypted message using the Message Integrity Code (MIC).
+            Description:
+                Verify the authenticity of the encrypted message using the Message Integrity Code (MIC).
+            Parameters:
+                encrypted_message (str): The encrypted message.
+                mic (str): The Message Integrity Code (MIC) of the encrypted message.
+                key (str): The key used to encrypt the message.
+            Returns:
+                True if the MIC is valid, False otherwise.
         """
         b_key = key.encode()
-        # Compute the Message Integrity Code (MIC)
+
         computed_mic = hmac.new(b_key, encrypted_message, digestmod='sha256')
         computed_mic = computed_mic.hexdigest()
     
-        # Compare the computed MIC with the original MIC
         if mic == computed_mic:
-            # If they match, the message is authentic
             return True
         else:
-            # If they don't match, the message has been tampered with
             return False
 
 def format_key( key: str ) -> tuple[ str, str ]:
-    # If the key is smaller than 32 characters,
-    # use the characters in the entered key, expand it
-    # to 32 characters and randomize the 32 characters.
-    # Then return a tuple, containing
-    # 1. the entered key
-    # 2. the randomized key
-    
+    '''
+        Description:
+            This function formats the key to be used in the polyalphabetic substitution cipher.
+            If the key is less than 32 characters, it is expanded to 32 characters using the characters in the key.
+            Then the long key is then randomly shuffled.
+        Parameters:
+            key (str): The key to be formatted.
+        Returns:
+            key (str): The entered key.
+            long_key (str): The expanded key, if the key is less than 32 characters, None otherwise.
+    '''
+    long_key = None
     if len( key ) < 32:
-        long_key = key * 32
+        long_key = key
+        while len( long_key ) < 32:
+            long_key += key
         long_key = ''.join( random.sample( long_key, len( long_key ) ) )
-        return key, long_key
-    else:
-        return key, None
+    return key, long_key
 
-def main( log: Logger ) -> None:     
+def log_output( log: Logger, output_lst: list[ str ] ) -> None:
+    '''
+        Description:
+            This function logs the output of the program.
+        Parameters:
+            log (Logger): The logger object.
+            output_lst (list[ str ]): The list of strings to be logged.
+        Returns:
+            None
+    '''
+    for output in output_lst:
+        log.info( output )
+    
+
+def main( log: Logger ) -> None:
+    '''
+        Description:
+            This function is the main function of the program.
+            It is responsible for the user interface and the interaction with the user.
+        Parameters:
+            log (Logger): The logger object.
+        Returns:
+            None
+    '''
     ret = 1
     machine = Machine( )
     main_str_dict: dict[ str, str ] = {
@@ -207,10 +244,9 @@ def main( log: Logger ) -> None:
     if not file_enc:
         message = input( main_str_dict['message'] )
         p_message, mic = machine.process_message( mode, key, message, file_enc, None )
-        log.info( f'Processed Message: {p_message}')
-        log.info( f'Message Integrity Code: {mic}' )
-        log.info( f'Entered Key: {in_key}')
-        log.info( f'Key used for encryption: {key}')
+        
+        output_lst = [ f'Processed Message: {p_message}', f'Message Integrity Code: {mic}', f'Entered Key: {in_key}', f'Key used for encryption: {key}' ]
+        log_output( log, output_lst )
         
         ret = 0
     elif file_enc:
@@ -219,10 +255,8 @@ def main( log: Logger ) -> None:
             message = file.read( )
         p_message, mic = machine.process_message( mode, key, message, file_enc, file_name )
         
-        log.info( f'Processed Message: {p_message}')
-        log.info( f'Message Integrity Code: {mic}' )
-        log.info( f'Entered Key: {in_key}')
-        log.info( f'Key used for encryption: {key}')
+        output_lst = [ f'Processed Message: {p_message}', f'Message Integrity Code: {mic}', f'Entered Key: {in_key}', f'Key used for encryption: {key}' ]
+        log_output( log, output_lst )
 
         ret = 1 
 
