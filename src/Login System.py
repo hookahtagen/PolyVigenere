@@ -1,5 +1,5 @@
 import argparse
-from getpass import getpass
+import getpass as gp
 import hashlib
 import pprint
 import sqlite3 as s
@@ -113,17 +113,70 @@ def parse_args():
             args <argparse.Namespace>: Namespace object containing the arguments
     '''
     
-    parser = argparse.ArgumentParser(description = 'Description', usage=argparse.SUPPRESS,
-                formatter_class=lambda prog: argparse.HelpFormatter(
-                    prog, max_help_position=80, width=120))
+    # parser = argparse.ArgumentParser(description = 'Description', usage=argparse.SUPPRESS,
+    #             formatter_class=lambda prog: argparse.HelpFormatter(
+    #                 prog, max_help_position=80, width=120))
     
-    parser.usage = 'python3 %(prog)s [options]'
+    # parser.usage = 'python3 %(prog)s [options]'
     
-    parser.add_argument('-r', '--register', action='store_true', default=False, help='Register a new user')
+    # parser.add_argument('-r', '--register', action='store_true', default=False, help='Register a new user')
     
-    args = parser.parse_args()
+    # args = parser.parse_args()
     
-    return args
+    # return args
+    
+    return None
+
+#
+# *********** Option functions ***********
+#
+
+def option1():
+    ret = False
+    clear_screen()
+    print('Login')
+    username = input('Username: ')
+    password = gp.getpass('Password: ')
+    
+    if not login( password, username ):
+        print('Login failed!')
+        ret = False
+    elif login:
+        print('Login successful!')
+        ret = True
+    return ret
+    
+def option2():
+    clear_screen()
+    print('Register a new user')
+    
+    username = input('Username: ') 
+    password = gp.getpass('Password: ')
+    password_re = gp.getpass('Repeat password: ')
+    if password == password_re:
+        val1, val2 = register( username, password ) 
+        responses = {
+            (True, True): 'User registered successfully!',
+            (False, True): 'Error while registering user!',
+            (True, False): 'User registered successfully, but error while creating user directory!',
+            (False, False): 'Username already exists!'
+        }
+        print(responses[(val1, val2)])
+        
+        ret = True if val1 and val2 else False
+    else:
+        print('Passwords do not match!')
+        ret = False
+    return ret
+
+def option3():
+    print('Thank you for using the login system. Goodbye!')
+    ret = True
+    return ret
+
+#
+# ****************************************
+#            
 
 def print_menu():
     '''
@@ -144,14 +197,8 @@ def print_menu():
         '   2. Register',
         '   3. Exit'
     ]
-    printer0 = pprint.PrettyPrinter(indent=0)
-    printer4 = pprint.PrettyPrinter(indent=4)
-    
-    printer0.pprint(str(menu_string_lst[0]))
-    printer0.pprint(str(menu_string_lst[1]))
-    for i in range(2, len(menu_string_lst)):
-        printer4.pprint(str(menu_string_lst[i]))
-    
+    for line in menu_string_lst:
+        print(line)
 
 def main() -> bool:
     '''
@@ -164,54 +211,21 @@ def main() -> bool:
         Returns:
             bool: True if the program was executed successfully, False otherwise
     '''
-    
+
     ret = False
     print_menu()
-    option: int = input('Enter an option: ')
     
-    if option == '1':
-        clear_screen()
-        print('Login')
-        username = input('Username: ')
-        password = getpass('Password: ')
-        
-        if not login( password, username ):
-            print('Login failed!')
-            exit( 1 )
-        print('Login successful!')
-    elif option == '2':
-        clear_screen()
-        print('Register a new user')
-        
-        username = input('Username: ') 
-        password = getpass('Password: ')
-        password_re = getpass('Repeat password: ')
-        if password == password_re:
-            val1, val2 = register( username, password ) 
-            responses = {
-                (True, True): 'User registered successfully!',
-                (False, True): 'Error while registering user!',
-                (True, False): 'User registered successfully, but error while creating user directory!',
-                (False, False): 'Username already exists!'
-            }
-            print(responses[(val1, val2)])
-            
-            ret = True if val1 and val2 else False
-            return ret
-        else:
-            print('Passwords do not match!')
-            ret = False
-    elif option == '3':
-        print('Thank you for using the login system. Goodbye!')
-        ret = True
-        
-                
-        
+    option: int = input('Enter an option: ')
+
+    if option == '1': option1()
+    elif option == '2': ret = option2()
+    elif option == '3': ret = option3()
+
+    return ret
 
 if __name__ == "__main__":
     args = parse_args()
     
-    ret = True if main() else False # This line actually runs the main function
-    exit( 0 if ret else 1 )
+    exit( main() )
 
   
