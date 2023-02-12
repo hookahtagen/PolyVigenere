@@ -21,7 +21,6 @@
             + Adding a table to the database to store the user's privileges
                 + This will allow the program to support multiple users with different privileges
             
-        
 '''
 
 import hashlib
@@ -52,7 +51,7 @@ def db_connect():
             cursor <sqlite3.Cursor>: Cursor object
     '''
     
-    db_name = "users.db"
+    db_name = "../database/users.db"
     conn = s.connect(db_name)
     cursor = conn.cursor()
     
@@ -127,29 +126,7 @@ def register(username: str, password: str):
         print(e)
         return False, True
 
-def parse_args():
-    '''
-        Description:
-            Parses the command line arguments.
-        Parameters:
-            None
-        Returns:
-            args <argparse.Namespace>: Namespace object containing the arguments
-    '''
-    
-    # parser = argparse.ArgumentParser(description = 'Description', usage=argparse.SUPPRESS,
-    #             formatter_class=lambda prog: argparse.HelpFormatter(
-    #                 prog, max_help_position=80, width=120))
-    
-    # parser.usage = 'python3 %(prog)s [options]'
-    
-    # parser.add_argument('-r', '--register', action='store_true', default=False, help='Register a new user')
-    
-    # args = parser.parse_args()
-    
-    # return args
-    
-    return None
+
 
 #
 # *********** Option functions ***********
@@ -194,6 +171,55 @@ def option2():
     return ret
 
 def option3():
+    def check_pw( passwd1: str, passwd2: str) -> bool:
+        if passwd1 != passwd2:
+            return False
+        return True
+    username = input('Type in the username of the user whose password you want to change: ')
+    curr_pw = gp.getpass('Type in your current password: ')
+    curr_pw_re = gp.getpass('Repeat your current password: ')
+    
+    if not check_pw(curr_pw, curr_pw_re):
+        print('Passwords do not match!')
+        return False
+    
+    pw_hash = hashlib.sha512(curr_pw.encode('utf-8')).hexdigest()
+    
+    conn, cursor = db_connect()
+    value = (username, pw_hash)
+    sql_query = "SELECT * FROM user_credentials WHERE username = ? AND pw_hash = ?"
+    cursor.execute(sql_query, value)
+    result = cursor.fetchone()
+    conn.close()
+    
+    if not result:
+        print('Wrong password!')
+        print(f'pw_hash: {pw_hash}')
+        print(f'result: {result}')
+        return False
+    
+    new_pw = gp.getpass('Type in your new password: ')
+    new_pw_re = gp.getpass('Repeat your new password: ')
+    
+    if not check_pw(new_pw, new_pw_re):
+        print('Passwords do not match!')
+        return False
+    
+    new_pw_hash = hashlib.sha512(new_pw.encode('utf-8')).hexdigest()
+    
+    conn, cursor = db_connect()
+    value = (new_pw_hash, username)
+    sql_query = "UPDATE user_credentials SET pw_hash = ? WHERE username = ?"
+    cursor.execute(sql_query, value)
+    conn.commit()
+    conn.close()    
+    print('Password changed successfully!')
+    return True
+
+def option4():
+    pass
+
+def option5():
     print('Thank you for using the login system. Goodbye!')
     ret = True
     return ret
@@ -219,7 +245,9 @@ def print_menu():
         'Please choose an option:',
         '   1. Login',
         '   2. Register',
-        '   3. Exit'
+        '   3. Change password',
+        '   4. Delete account',
+        '   5. Exit'
     ]
     for line in menu_string_lst:
         print(line)
@@ -248,8 +276,6 @@ def main() -> bool:
     return ret
 
 if __name__ == "__main__":
-    args = parse_args()
-    
     exit( main() )
 
   
