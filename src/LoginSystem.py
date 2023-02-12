@@ -1,9 +1,33 @@
-import argparse
-import getpass as gp
+'''
+    Author: Hendrik Siemens
+    Date: 2023-02-12
+    Email: siemenshendrik1@gmail.com
+    Version: 1.0
+    
+    Description:
+        This program is a simple login system.
+        For now it supports the following features:
+            + Registering a new user
+            + Logging in as an existing user
+            + Exiting the program
+            
+        The program uses a database to store the user credentials.
+        The passwords in the database are hashed using the SHA-512 algorithm to prevent
+        them from being stolen in cleartext in case the database is compromised.
+        
+        Features in development:
+            + Changing the password of an existing user
+            + Deleting an existing user
+            + Adding a table to the database to store the user's privileges
+                + This will allow the program to support multiple users with different privileges
+            
+        
+'''
+
 import hashlib
-import pprint
-import sqlite3 as s
+import getpass as gp
 import os
+import sqlite3 as s
 
 def clear_screen():
     '''
