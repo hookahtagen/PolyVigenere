@@ -167,7 +167,7 @@ def main() -> bool:
     
     ret = False
     print_menu()
-    option = input('Enter an option: ')
+    option: int = input('Enter an option: ')
     
     if option == '1':
         clear_screen()
