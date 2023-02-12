@@ -10,13 +10,13 @@
             + Registering a new user
             + Logging in as an existing user
             + Exiting the program
+            + Changing the password of an existing user
             
         The program uses a database to store the user credentials.
         The passwords in the database are hashed using the SHA-512 algorithm to prevent
         them from being stolen in cleartext in case the database is compromised.
         
         Features in development:
-            + Changing the password of an existing user
             + Deleting an existing user
             + Adding a table to the database to store the user's privileges
                 + This will allow the program to support multiple users with different privileges
@@ -217,7 +217,42 @@ def option3():
     return True
 
 def option4():
-    pass
+    def check_pw( passwd1: str, passwd2: str) -> bool:
+        if passwd1 != passwd2:
+            return False
+        return True
+    username = input('Type in the username of the user you want to delete: ')
+    curr_pw = gp.getpass('Type in your current password: ')
+    curr_pw_re = gp.getpass('Repeat your current password: ')
+    
+    if not check_pw(curr_pw, curr_pw_re):
+        print('Passwords do not match!')
+        return False
+    
+    pw_hash = hashlib.sha512(curr_pw.encode('utf-8')).hexdigest()
+    
+    conn, cursor = db_connect()
+    value = (username, pw_hash)
+    sql_query = "SELECT * FROM user_credentials WHERE username = ? AND pw_hash = ?"
+    cursor.execute(sql_query, value)
+    result = cursor.fetchone()
+    conn.close()
+    
+    if not result:
+        print('Wrong password!')
+        print(f'pw_hash: {pw_hash}')
+        print(f'result: {result}')
+        return False
+    
+    conn, cursor = db_connect()
+    value = (username,)
+    sql_query = "DELETE FROM user_credentials WHERE username = ?"
+    cursor.execute(sql_query, value)
+    conn.commit()
+    conn.close()
+    
+    print('User deleted successfully!')
+    return True
 
 def option5():
     print('Thank you for using the login system. Goodbye!')
@@ -272,6 +307,8 @@ def main() -> bool:
     if option == '1': option1()
     elif option == '2': ret = option2()
     elif option == '3': ret = option3()
+    elif option == '4': ret = option4()
+    elif option == '5': ret = option5()
 
     return ret
 
