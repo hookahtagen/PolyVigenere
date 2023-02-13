@@ -125,6 +125,8 @@ class Choice:
     
     def __init__(self, option: str) -> None:
         self.option = option
+        self.user = ''
+        self.pw = ''
         
         return None
     
@@ -140,6 +142,8 @@ class Choice:
             ret = False
         elif self.login:
             print('Login successful!')
+            self.user = username
+            self.pw = password
             ret = True
             
         return ret
@@ -162,6 +166,8 @@ class Choice:
             print(responses[(val1, val2)])
             
             ret = True if val1 and val2 else False
+            self.user = username if val1 and val2 else ''
+            self.pw = password if val1 and val2 else ''
         else:
             print('Passwords do not match!')
             ret = False
@@ -202,6 +208,8 @@ class Choice:
         message = 'Password changed successfully!' if result else 'Error while changing password!'   
         print( message )
         
+        self.user = value_1[0] if result else ''
+        self.pw = new_passwd if result else ''
         return True if result else False
     
     def option_4(self):
@@ -232,10 +240,12 @@ class Choice:
         
         message = 'User deleted successfully!' if result else 'Error while deleting user!'
         print( message )
-        
+    
+        self.user = value_1[0] if result else ''
+        self.pw = ''
         return True if result else False
     
-    def option_5():
+    def option_5(self):
         print('Thank you for using the login system. Goodbye!')
         ret = True
         
