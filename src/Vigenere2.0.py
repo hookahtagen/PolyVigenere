@@ -1,3 +1,18 @@
+'''
+    Author: Hendrik Siemens
+    Date: 2023-02-13
+    Email: siemenshendrik1@gmail.com
+    Version: 2.1
+    
+    Description:
+        This program uses the Vigenere cipher to encrypt and decrypt messages.
+        For more security, the Vigenere cipher is used in conjunction with the Polyalphabetic cipher.
+        
+        For more information about this program, please visit the GitHub repository:
+        https://github.com/hookahtagen/PolyVigenere
+'''
+
+
 import argparse
 import getpass
 import hmac
