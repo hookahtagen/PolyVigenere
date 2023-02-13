@@ -126,8 +126,35 @@ def register(username: str, password: str):
         print(e)
         return False, True
 
-
-
+def check_pw( mode: str, key_word = '' ) -> str:
+    '''
+        Description:
+            Checks if the two passwords are the same.
+        Parameters:
+            passwd1 <str>: Password 1
+            passwd2 <str>: Password 2
+            mode <str>: Mode of operation
+        Returns:
+            True if the passwords are the same, False otherwise
+    '''
+    
+    if mode == 'register':
+        pass
+    elif mode == 'change':
+        str_1 = f'Enter {key_word} password: '
+        str_2 = f'Repeat {key_word} password: '
+    elif mode == 'delete':
+        str_1 = 'Enter password: '
+        str_2 = 'Repeat password: '
+    
+    passwd = gp.getpass( str_1 )
+    passwd_re = gp.getpass( str_2 )
+    
+    if passwd != passwd_re:
+        print('Passwords do not match!')
+        exit( 1 )
+    return passwd 
+     
 #
 # *********** Option functions ***********
 #
@@ -171,88 +198,52 @@ def option2():
     return ret
 
 def option3():
-    def check_pw( passwd1: str, passwd2: str) -> bool:
-        if passwd1 != passwd2:
-            return False
-        return True
-    username = input('Type in the username of the user whose password you want to change: ')
-    curr_pw = gp.getpass('Type in your current password: ')
-    curr_pw_re = gp.getpass('Repeat your current password: ')
-    
-    if not check_pw(curr_pw, curr_pw_re):
-        print('Passwords do not match!')
-        return False
-    
-    pw_hash = hashlib.sha512(curr_pw.encode('utf-8')).hexdigest()
-    
     conn, cursor = db_connect()
-    value = (username, pw_hash)
-    sql_query = "SELECT * FROM user_credentials WHERE username = ? AND pw_hash = ?"
-    cursor.execute(sql_query, value)
+    value_1 = [None, None] # username, pw_hash
+    value_2 = [None, None] # pw_hash, username
+    sql_query_1 = "SELECT * FROM user_credentials WHERE username = ? AND pw_hash = ?"
+    sql_query_2 = "UPDATE user_credentials SET pw_hash = ? WHERE username = ?"
+    
+    value_1[0] = value_2[1] = input('Type in the username of the user whose password you want to change: ')
+    passwd = check_pw("change", "current")
+    value_1[1] = hashlib.sha512(passwd.encode('utf-8')).hexdigest()
+    
+    cursor.execute(sql_query_1, value_1)
     result = cursor.fetchone()
-    conn.close()
     
-    if not result:
-        print('Wrong password!')
-        print(f'pw_hash: {pw_hash}')
-        print(f'result: {result}')
-        return False
+    new_passwd = check_pw("change", "new")
+    value_2[0] = hashlib.sha512(new_passwd.encode('utf-8')).hexdigest()
     
-    new_pw = gp.getpass('Type in your new password: ')
-    new_pw_re = gp.getpass('Repeat your new password: ')
+    cursor.execute(sql_query_2, value_2)
+    conn.commit() if result else None
+    conn.close() 
     
-    if not check_pw(new_pw, new_pw_re):
-        print('Passwords do not match!')
-        return False
+    message = 'Password changed successfully!' if result else 'Error while changing password!'   
+    print( message )
     
-    new_pw_hash = hashlib.sha512(new_pw.encode('utf-8')).hexdigest()
-    
-    conn, cursor = db_connect()
-    value = (new_pw_hash, username)
-    sql_query = "UPDATE user_credentials SET pw_hash = ? WHERE username = ?"
-    cursor.execute(sql_query, value)
-    conn.commit()
-    conn.close()    
-    print('Password changed successfully!')
-    return True
+    return True if result else False
 
 def option4():
-    def check_pw( passwd1: str, passwd2: str) -> bool:
-        if passwd1 != passwd2:
-            return False
-        return True
-    username = input('Type in the username of the user you want to delete: ')
-    curr_pw = gp.getpass('Type in your current password: ')
-    curr_pw_re = gp.getpass('Repeat your current password: ')
-    
-    if not check_pw(curr_pw, curr_pw_re):
-        print('Passwords do not match!')
-        return False
-    
-    pw_hash = hashlib.sha512(curr_pw.encode('utf-8')).hexdigest()
-    
     conn, cursor = db_connect()
-    value = (username, pw_hash)
-    sql_query = "SELECT * FROM user_credentials WHERE username = ? AND pw_hash = ?"
-    cursor.execute(sql_query, value)
+    value_1 = [ None, None ] # username, pw_hash
+    value_2 = [ None, ] # username
+    sql_query_1 = "SELECT * FROM user_credentials WHERE username = ? AND pw_hash = ?"
+    sql_query_2 = "DELETE FROM user_credentials WHERE username = ?"
+    
+    value_1[0] = value_2[0] = input('Type in the username of the user you want to delete: ')   
+    passwd = check_pw('delete')
+    value_1[1] = hashlib.sha512(passwd.encode('utf-8')).hexdigest()
+    
+    cursor.execute(sql_query_1, value_1)
     result = cursor.fetchone()
+    
+    cursor.execute(sql_query_2, value_2)
+    conn.commit() if result else None
     conn.close()
     
-    if not result:
-        print('Wrong password!')
-        print(f'pw_hash: {pw_hash}')
-        print(f'result: {result}')
-        return False
-    
-    conn, cursor = db_connect()
-    value = (username,)
-    sql_query = "DELETE FROM user_credentials WHERE username = ?"
-    cursor.execute(sql_query, value)
-    conn.commit()
-    conn.close()
-    
-    print('User deleted successfully!')
-    return True
+    message = 'User deleted successfully!' if result else 'Error while deleting user!'
+    print( message )
+    return True if result else False
 
 def option5():
     print('Thank you for using the login system. Goodbye!')
@@ -314,5 +305,3 @@ def main() -> bool:
 
 if __name__ == "__main__":
     exit( main() )
-
-  
