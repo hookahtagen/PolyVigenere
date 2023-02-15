@@ -16,6 +16,7 @@
 
 import os
 from options import Choice
+from mainProgram import mainProgram
 
 class System:
     
@@ -104,8 +105,24 @@ class mainProgram:
         for line in main_menu_string_lst:
             print(line)
 
-def main( machine: System ):
+def main( ):
     main_prog = mainProgram()
+    main_prog.print_main_menu()
+    
+    option = input( 'Please choose an option: ' )
+    
+    if option == '1':
+        ret = main_prog.option_1()
+    elif option == '2':
+        ret = main_prog.option_2()
+    elif option == '3':
+        ret = main_prog.option_3()
+    elif option == '4':
+        ret = main_prog.option_4()
+    elif option == '5':
+        ret = main_prog.option_5()
+        
+    return ret
     
     pass            
 
@@ -120,7 +137,7 @@ def setup() -> bool:
     if option == '1':
         ret = Option.option_1()
         if ret:
-            main( machine )
+            main( )
     elif option == '2':
         ret = Option.option_2()
     elif option == '3':

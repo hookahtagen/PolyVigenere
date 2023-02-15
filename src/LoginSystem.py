@@ -30,6 +30,7 @@ import sqlite3 as s
 
 from options import Choice
 
+
 def clear_screen():
     '''
         Description: 
