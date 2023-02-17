@@ -36,7 +36,7 @@ class Choice:
             return False
         return True
     
-    def login( self, password: str, username: str) -> bool:
+    def login( self, password: str, username: str) -> tuple[bool, str]:
         '''
             Description:
                 Checks if the username and password are correct.
@@ -57,8 +57,8 @@ class Choice:
         conn.close()
         
         if not result or result[2] != passwd_hash:
-            return False    
-        return True
+            return (False, None)
+        return (True, result[1])
     
     def register(self, username: str, password: str):
         '''
@@ -137,10 +137,11 @@ class Choice:
         username = input('Username: ')
         password = gp.getpass('Password: ')
 
-        if not self.login( password, username ):
+        val, login = self.login( password, username )
+        if not val:
             print('Login failed!')
             ret = False
-        elif self.login:
+        elif val:
             print('Login successful!')
             self.user = username
             self.pw = password

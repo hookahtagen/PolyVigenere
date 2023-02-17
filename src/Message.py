@@ -60,71 +60,41 @@ class System:
         self.clear_screen()
         for line in menu_string_lst:
             print(line)
-            
-class mainProgram:
-    def __init__(self):
-        self.print_main_menu()
-        
-    def clear_screen(self):
-        '''
-            Description: 
-                Clears the screen.
-            Parameters:
-                None
-            Returns:
-                None    
-        '''
-        
-        os.system('cls' if os.name == 'nt' else 'clear') 
-    
-    def print_main_menu( self ):
-        '''
-            Description:
-                Prints the menu. This should be done using a function, because
-                it's easier to modify the menu in the future and provides more
-                readability.
-            Parameters:
-                None
-            Returns:
-                None
-        '''
-        
-        main_menu_string_lst = [
-            '********** Main Menu **********',
-            '',
-            'What do you want to do?',
-            '   1. Send a message',
-            '   2. Read your messages',
-            '   3. Change your alphabet set',
-            '   ',
-            '   4. Logout',
-            '   5. Exit'
-        ]
-        
-        self.clear_screen()
-        for line in main_menu_string_lst:
-            print(line)
 
-def main( ):
-    main_prog = mainProgram()
+def main( user: str ):
+    main_prog = mainProgram( user )
     main_prog.print_main_menu()
     
     option = input( 'Please choose an option: ' )
     
     if option == '1':
         ret = main_prog.option_1()
+        
+        message = 'Do you want to send another message? (y/n) > ' if ret else 'Something went wrong. Do you want to try again? (y/n) > '
+        answer: bool = input( message )
+        main ( user ) if answer == 'y' else exit( 0 if ret else 1 )
+        
+        
+        
     elif option == '2':
         ret = main_prog.option_2()
     elif option == '3':
         ret = main_prog.option_3()
+        
+        message = 'Do you want to change your alphabet set again or another set? (y/n) > ' if ret else 'Something went wrong. Do you want to try again? (y/n) > '
+        answer: bool = input( message )
+        main ( user ) if answer == 'y' else exit( 0 if ret else 1 )
+        
     elif option == '4':
         ret = main_prog.option_4()
+        
+        if ret:
+            setup()
+        
     elif option == '5':
         ret = main_prog.option_5()
         
-    return ret
-    
-    pass            
+    return ret         
 
 def setup() -> bool:
     machine = System()
@@ -137,7 +107,7 @@ def setup() -> bool:
     if option == '1':
         ret = Option.option_1()
         if ret:
-            main( )
+            main( Option.user )
     elif option == '2':
         ret = Option.option_2()
     elif option == '3':
