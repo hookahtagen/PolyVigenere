@@ -208,3 +208,8 @@
 2023-02-09 01:02:42,705 - __main__ - INFO - Message Integrity Code: ee1578e76df60d283edc5efa9320144034404fdfb294e19195dc1395ba2d222e
 2023-02-09 01:02:42,705 - __main__ - INFO - Entered Key: ABCDFGFHRHFHSJF
 2023-02-09 01:02:42,705 - __main__ - INFO - Key used for encryption: HAHRBFJDFBFHGCBJFGGAHFFDFRDCSFJHFAFCHHSFFRHSH
+2023-02-17 13:19:17,529 - __main__ - INFO - Machine Initialized
+2023-02-17 13:19:27,334 - __main__ - INFO - Processed Message: SNPAT
+2023-02-17 13:19:27,335 - __main__ - INFO - Message Integrity Code: cd799d0e3feca16251172b06507143ec707363287be3fdb9dd9b90d0e96e9122
+2023-02-17 13:19:27,335 - __main__ - INFO - Entered Key: HELLO
+2023-02-17 13:19:27,335 - __main__ - INFO - Key used for encryption: LLELHLLHOHOHELEEOHELLOELLOOLHEHLLLO

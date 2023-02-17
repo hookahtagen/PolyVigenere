@@ -247,7 +247,8 @@ class Choice:
         return True if result else False
     
     def option_5(self):
-        print('Thank you for using the login system. Goodbye!')
+        print('Thank you for using my message system! :)')
+        print('Goodbye!')
         ret = True
         
         return ret

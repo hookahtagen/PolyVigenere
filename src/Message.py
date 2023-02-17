@@ -78,6 +78,11 @@ def main( user: str ):
         
     elif option == '2':
         ret = main_prog.option_2()
+        
+        message = 'Do you want to return to the main menu? (y/n) > ' if ret else 'Something went wrong. Do you want to try again? (y/n) > '
+        answer: bool = input( message )
+        main(user) 
+        
     elif option == '3':
         ret = main_prog.option_3()
         

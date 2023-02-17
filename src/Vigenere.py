@@ -74,6 +74,8 @@ class Machine:
             self.processed_message = self.poly_vigenere_decrypt( self.message, self.key, self.alphabets )
         
         if not self.file_enc:
+            if self.mode == 'd':
+                return self.processed_message, ''
             return self.processed_message, self.mic
         else:
             with open( file_name.replace('.txt','_enc.txt'), 'w' ) as file:

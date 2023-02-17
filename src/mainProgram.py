@@ -2,18 +2,18 @@ import datetime
 import hashlib
 import getpass as gp
 import os
-from re import T
 import sqlite3 as s
 
 from Vigenere import Machine
-from polyAlpha import Alphabet
+
 
 class mainProgram:
     def __init__(self, login: str) -> None:
         self.login = login
-        
+        self.machine = Machine()
+
         self.print_main_menu()
-        
+
     def db_connect(self):
         '''
             Description:
@@ -24,13 +24,13 @@ class mainProgram:
                 conn <sqlite3.Connection>: Connection object
                 cursor <sqlite3.Cursor>: Cursor object
         '''
-        
-        self.db_name = "../database/users.db"
+
+        self.db_name = "../users.db"
         self.conn = s.connect(self.db_name)
         self.cursor = self.conn.cursor()
-        
+
         return self.conn, self.cursor
-        
+
     def clear_screen(self):
         '''
             Description: 
@@ -40,10 +40,10 @@ class mainProgram:
             Returns:
                 None    
         '''
-        
-        os.system('cls' if os.name == 'nt' else 'clear') 
-    
-    def print_main_menu( self ):
+
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+    def print_main_menu(self):
         '''
             Description:
                 Prints the menu. This should be done using a function, because
@@ -54,7 +54,7 @@ class mainProgram:
             Returns:
                 None
         '''
-        
+
         main_menu_string_lst = [
             '********** Main Menu **********',
             '',
@@ -68,19 +68,19 @@ class mainProgram:
             '   4. Logout',
             '   5. Exit'
         ]
-        
+
         self.clear_screen()
         for line in main_menu_string_lst:
             print(line)
-            
+
     def option_1(self):
         ret = False
 
         self.clear_screen()
         conn, cursor = self.db_connect()
-        
+
         recipient = input('Enter the username of the recipient: ')
-        
+
         # Get the alphabet set for the connection -> login - recipient from the database users.db
         #
         # The alphabet set / key is stored in the table alpha_set
@@ -89,102 +89,190 @@ class mainProgram:
         #   - user_1: TEXT, NOT NULL
         #   - user_2: TEXT, NOT NULL
         #   - alphabets: TEXT, NOT NULL
-        
+
         values = (self.login, recipient)
         sql_query = 'SELECT alphabets FROM alpha_set WHERE user_1 = ? AND user_2 = ?'
         key = cursor.execute(sql_query, values).fetchone()[0]
         message = input('Enter the message you want to send: ')
-        
+
         verify_send_start = '''***** Below is the message you want to send *****'''
         print(verify_send_start + '\n')
         print('Message: ' + message + '\n')
-        
-        check_send: bool = input('Do you want to send the message? (y/n): ') in ['y', 'Y', 'yes', 'Yes', 'YES']
-        
+
+        check_send: bool = input(
+            'Do you want to send the message? (y/n): ') in ['y', 'Y', 'yes', 'Yes', 'YES']
+
         if not check_send:
             print('Message not sent!')
             print('Press enter to continue...')
             input()
-            
+
+            conn.close()
+
             ret = False
         elif check_send:
             self.clear_screen()
             print('Sending message...')
             time_stamp = str(datetime.datetime.now())
-            
+
             # Encrypt the message using the key
-            self.alpha = Alphabet( key )
-            self.alphabets = self.alpha.polyalphabet
-                    
-            enciphered_message = Machine.poly_vigenere_encrypt(message, key, self.alphabets) 
             
+            enciphered_message, mic = self.machine.process_message(
+                'e', key, message, False, None)
+
             # Store the encrypted message in the database
-            values = (self.login, recipient, time_stamp, enciphered_message)
-            sql_query = 'INSERT INTO messages (sender, recipient, message) VALUES (?, ?, ?)'
+            values = (self.login, recipient, time_stamp, enciphered_message, 0)
+            sql_query = 'INSERT INTO messages (sender, recipient, timestamp, message, read) VALUES (?, ?, ?, ?, ?)'
             cursor.execute(sql_query, values)
             conn.commit()
-            
+            conn.close()
+
             print('Message sent!')
             print('Press enter to continue...')
             input()
-            
+
             ret = True
-    
+
     def option_2(self):
-        pass
+        ret = False
+        conn, cursor = self.db_connect()
+
+        self.clear_screen()
+
+        # Get all messages from the database for the login
+        value = (self.login, )
+        sql_query = 'SELECT * FROM messages WHERE recipient = ?'
+
+        # Store the messages in a dictionary with the timestamp as a key and a tupley as the value
+        # The tuples values are: 1. the sender of the message, 2. the message itself
+
+        # The corresponding table looks as follows:
+        #   - id        INTEGER, NOT NULL, PRIMARY KEY
+        #   - sender	TEXT NOT NULL,
+        #   - recipient	TEXT NOT NULL,
+        #   - timestamp	TEXT NOT NULL,
+        #   - message	TEXT NOT NULL,
+        #   - read	    INTEGER NOT NULL,
+
+        messages = cursor.execute(sql_query, value).fetchall()
+
+
+
+        messages_dict = {}
+
+        for message in messages:
+            messages_dict[message[3]] = (message[1], message[4])
+
+        # Print the messages
+        print('********** Messages **********')
+        print('')
+
+        # If there are no messages, print a message and return
+        if not messages_dict:
+            print('No messages!')
+            print('Press enter to continue...')
+            input()
+            ret = False
+        elif messages_dict:
+            for timestamp, message in messages_dict.items():
+                sender = message[0]
+                values = (self.login, sender, sender, self.login)
+                sql_query = 'SELECT alphabets FROM alpha_set WHERE (user_1 = ? AND user_2 = ?) OR (user_1 = ? AND user_2 = ?)'
+                
+                key = cursor.execute(sql_query, values).fetchone()[0]
+
+                # Decrypt the message
+                deciphered_message, mic = self.machine.process_message(
+                    'd', key, message[1], False, None)
+
+                # Print the message
+                print('Timestamp: ' + timestamp)
+                print('Sender: ' + sender)
+                print('Message: ' + deciphered_message)
+                print('')
+
+            # Mark the messages as read
+            for timestamp in messages_dict.keys():
+                values = (1, self.login, timestamp)
+                sql_query = 'UPDATE messages SET read = ? WHERE recipient = ? AND timestamp = ?'
+                cursor.execute(sql_query, values)
+                conn.commit()
+
+            print('Press enter to continue...')
+            input()
+
+            conn.close()
+
+            ret = True
+        
+        return ret
 
     def option_3(self):
         ret = False
         conn, cursor = self.db_connect()
-        
+
         message = "Enter the username of the user you want to change the alphabet set with: "
         recipient = input(message)
-        
+
         message = "Enter the new key: "
         key = input(message).upper()
-             
+
         # Check if the key is valid
         #   -> Currently only the letters from A to Z are supported
         # Possible options for the key are stored in variable self.alpha.alphabets
-            
+
         for char in key:
             if char not in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
                 print('Invalid key!')
                 print('Press enter to continue...')
                 input()
-                
+
                 ret = False
                 break
         else:
-            # Update the key in the database
-            sql_query = 'UPDATE alpha_set SET alphabets = ? WHERE user_1 = ? AND user_2 = ?'
-            values = (key, self.login, recipient)
-            cursor.execute(sql_query, values)
-            conn.commit()
-            
-            print('Key updated!')
-            print('Press enter to continue...')
-            input()
-            
-            ret = True
-        
+            # Update the key in the database if it doesn't exist, else create it
+            if not cursor.execute('SELECT * FROM alpha_set WHERE user_1 = ? AND user_2 = ?', (self.login, recipient)).fetchone():
+                sql_query = 'INSERT INTO alpha_set (user_1, user_2, alphabets) VALUES (?, ?, ?)'
+                values = (self.login, recipient, key)
+                cursor.execute(sql_query, values)
+                conn.commit()
+                conn.close()
+
+                print('Key created!')
+                print('Press enter to continue...')
+                input()
+
+                ret = True
+            else:
+                sql_query = 'UPDATE alpha_set SET alphabets = ? WHERE user_1 = ? AND user_2 = ?'
+                values = (key, self.login, recipient)
+                cursor.execute(sql_query, values)
+                conn.commit()
+                conn.close()
+
+                print('Key updated!')
+                print('Press enter to continue...')
+                input()
+
+                ret = True
+
         return ret
-    
+
     def option_4(self):
         ret = False
-        
+
         print('Logging out...')
         print('Press enter to continue...')
         input()
         ret = True
-        
+
         self.clear_screen()
         return ret
-    
+
     def option_5(self):
         ret = True
-        
+
         print('Thank you for using my message system!')
         print('Have a nice day :)')
-        
-        return ret 
+
+        return ret
