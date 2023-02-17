@@ -6,6 +6,11 @@ import sqlite3 as s
 
 from Vigenere import Machine
 
+#
+# ***** Defines *****
+#
+
+p_print = print
 
 class mainProgram:
     def __init__(self, login: str) -> None:
@@ -25,7 +30,7 @@ class mainProgram:
                 cursor <sqlite3.Cursor>: Cursor object
         '''
 
-        self.db_name = "../users.db"
+        self.db_name = "/home/hendrik/Documents/Github/PolyVigenere/database/users.db"
         self.conn = s.connect(self.db_name)
         self.cursor = self.conn.cursor()
 
@@ -92,7 +97,12 @@ class mainProgram:
 
         values = (self.login, recipient)
         sql_query = 'SELECT alphabets FROM alpha_set WHERE user_1 = ? AND user_2 = ?'
-        key = cursor.execute(sql_query, values).fetchone()[0]
+        key_hash = cursor.execute(sql_query, values).fetchone()[0]
+        key = gp.getpass('Enter the key to verify the connection: ')
+        if hashlib.sha256(key.encode()).hexdigest() != key_hash:
+            print('Wrong key! Connection not verified!')
+            ret = False
+            return ret
         message = input('Enter the message you want to send: ')
 
         verify_send_start = '''***** Below is the message you want to send *****'''
@@ -116,7 +126,7 @@ class mainProgram:
             time_stamp = str(datetime.datetime.now())
 
             # Encrypt the message using the key
-            
+
             enciphered_message, mic = self.machine.process_message(
                 'e', key, message, False, None)
 
@@ -155,9 +165,6 @@ class mainProgram:
         #   - read	    INTEGER NOT NULL,
 
         messages = cursor.execute(sql_query, value).fetchall()
-
-
-
         messages_dict = {}
 
         for message in messages:
@@ -178,8 +185,13 @@ class mainProgram:
                 sender = message[0]
                 values = (self.login, sender, sender, self.login)
                 sql_query = 'SELECT alphabets FROM alpha_set WHERE (user_1 = ? AND user_2 = ?) OR (user_1 = ? AND user_2 = ?)'
-                
-                key = cursor.execute(sql_query, values).fetchone()[0]
+
+                key_hash = cursor.execute(sql_query, values).fetchone()[0]
+                key = gp.getpass('Enter the key to verify the connection: ')
+                if hashlib.sha256(key.encode()).hexdigest() != key_hash:
+                    print('Wrong key! Connection not verified!')
+                    ret = False
+                    return ret
 
                 # Decrypt the message
                 deciphered_message, mic = self.machine.process_message(
@@ -204,8 +216,52 @@ class mainProgram:
             conn.close()
 
             ret = True
-        
+
         return ret
+    
+    def option_3_helper(self, old_key, new_key, user_1, user_2):
+        '''
+            Description:
+                This function provides the change of the key used for the encryption and decryption of the messages.
+                It basically applies the new key to all messages that were encrypted with the old key.
+            Parameters:
+                self: The object itself
+            Returns:
+                None
+        '''
+        conn, cursor = self.db_connect()
+        
+        # The messages dict has an auto incremented integer as a key and the whole row for one message as a value
+        try:
+            messages = {}
+            values = (user_1, user_2, user_2, user_1)
+            sql_query = 'SELECT * FROM messages WHERE (sender = ? AND recipient = ?) OR (sender = ? AND recipient = ?)'
+            result = cursor.execute(sql_query, values).fetchall()
+            for message in result:
+                messages[message[0]] = message
+
+            # Apply the new key to the messages
+            for id, message in messages.items():
+                message = message[4]
+                message, mic = self.machine.process_message('d', old_key, message, False, None)
+                message, mic = self.machine.process_message('e', new_key, message, False, None)
+
+                values = (message, id)
+                sql_query = 'UPDATE messages SET message = ? WHERE id = ?'
+                cursor.execute(sql_query, values)    
+            val = True
+        except Exception as e:
+            print(e)
+            val = False
+        
+        if val:
+            conn.commit()
+            
+            p_message = 'The key has been changed successfully!'
+            p_print(p_message)
+        
+        conn.close()
+        
 
     def option_3(self):
         ret = False
@@ -213,6 +269,23 @@ class mainProgram:
 
         message = "Enter the username of the user you want to change the alphabet set with: "
         recipient = input(message)
+        
+        message = "Enter the old key: "
+        old_key = input(message).upper()
+        
+        message = "Enter the old key again: "
+        old_key_re = input(message).upper()
+        
+        if old_key != old_key_re:
+            print('The keys do not match!')
+            
+            ret = False
+            return ret
+        elif old_key == old_key_re:
+            old_key_hash = hashlib.sha256(old_key.encode()).hexdigest()
+            value = (old_key_hash, )
+            sql_query = 'SELECT * FROM alpha_set WHERE alphabets = ?'
+            result = cursor.execute(sql_query, value).fetchone()
 
         message = "Enter the new key: "
         key = input(message).upper()
@@ -230,31 +303,41 @@ class mainProgram:
                 ret = False
                 break
         else:
-            # Update the key in the database if it doesn't exist, else create it
-            if not cursor.execute('SELECT * FROM alpha_set WHERE user_1 = ? AND user_2 = ?', (self.login, recipient)).fetchone():
+
+            values = (self.login, recipient, recipient, self.login)
+            sql_query = 'SELECT alphabets FROM alpha_set WHERE (user_1 = ? AND user_2 = ?) OR (user_1 = ? AND user_2 = ?)'
+            
+            result = cursor.execute(sql_query, values).fetchone()
+            if not result:
                 sql_query = 'INSERT INTO alpha_set (user_1, user_2, alphabets) VALUES (?, ?, ?)'
-                values = (self.login, recipient, key)
+                key_hash: str = hashlib.sha256(key.encode()).hexdigest()
+                values = (self.login, recipient, key_hash)
                 cursor.execute(sql_query, values)
-                conn.commit()
-                conn.close()
 
                 print('Key created!')
-                print('Press enter to continue...')
-                input()
-
                 ret = True
+
             else:
-                sql_query = 'UPDATE alpha_set SET alphabets = ? WHERE user_1 = ? AND user_2 = ?'
-                values = (key, self.login, recipient)
+                key_hash = hashlib.sha256(key.encode()).hexdigest()
+                sql_query = 'UPDATE alpha_set SET alphabets = ? WHERE (user_1 = ? AND user_2 = ?) OR (user_1 = ? AND user_2 = ?)'
+                values = (key_hash, self.login, recipient, recipient, self.login)
                 cursor.execute(sql_query, values)
-                conn.commit()
-                conn.close()
 
                 print('Key updated!')
-                print('Press enter to continue...')
-                input()
-
                 ret = True
+
+            print('Press enter to continue...')
+            input()
+
+            conn.commit()
+            conn.close()
+            
+            message = "Do you want to apply the new key to all messages that were encrypted with the old key? (y/n): "
+            answer: bool = input(message).lower() == 'y'
+            
+            if answer:
+                self.option_3_helper(old_key, key, self.login, recipient)
+                
 
         return ret
 

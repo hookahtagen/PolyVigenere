@@ -18,7 +18,8 @@ class Choice:
                 cursor <sqlite3.Cursor>: Cursor object
         '''
         
-        self.db_name = "../database/users.db"
+        
+        self.db_name = "/home/hendrik/Documents/Github/PolyVigenere/database/users.db"
         self.conn = s.connect(self.db_name)
         self.cursor = self.conn.cursor()
         
