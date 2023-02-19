@@ -1,9 +1,19 @@
+from calendar import c
 import hashlib
 import getpass as gp
 import os
 import sqlite3 as s
 
+
+
 class Choice:
+    def __init__(self, option: str) -> None:
+        self.option = option
+        self.user = ''
+        self.pw = ''
+        
+        return None
+    
     def clear_screen(self):        
         os.system('cls' if os.name == 'nt' else 'clear')
     
@@ -37,7 +47,59 @@ class Choice:
             return False
         return True
     
-    def login( self, password: str, username: str) -> tuple[bool, str]:
+    def sql_queries(self, keyword: str, query: str, values: tuple, fetch: str = 'all'):
+        '''
+            Description:
+                Executes a SQL query.
+            Parameters:
+                query <str>: SQL query
+                values <tuple>: Values to be inserted into the query
+            Returns:
+                result <tuple>: Result of the query
+        '''
+        result = None
+        conn, cursor = self.db_connect()
+
+        if keyword == 'INSERT':
+            try:
+                cursor.execute(query, values)
+                conn.commit()
+                conn.close()
+                result = True
+            except Exception as e:
+                print(e)
+                conn.close()
+                result = False
+        elif keyword == 'SELECT':
+            try:
+                cursor.execute(query, values)
+                if fetch == 'all':
+                    result = cursor.fetchall()
+                elif fetch == 'one':
+                    result = cursor.fetchone()
+                conn.close()
+            except Exception as e:
+                print(e)
+                conn.close()
+                result = False
+        elif keyword == 'UPDATE':
+            try:
+                cursor.execute(query, values)
+                conn.commit()
+                conn.close()
+                result = True
+            except Exception as e:
+                print(e)
+                conn.close()
+                result = False
+        elif keyword == 'DELETE':
+            pass
+
+        del conn, cursor
+
+        return result
+    
+    def login_helper( self, password: str, username: str) -> tuple[bool, str]:
         '''
             Description:
                 Checks if the username and password are correct.
@@ -49,13 +111,13 @@ class Choice:
         '''
         
         passwd_hash = hashlib.sha512(password.encode('utf-8')).hexdigest()
-        
-        conn, cursor = self.db_connect()
-        value = (username,)
-        sql_query = "SELECT * FROM user_credentials WHERE username = ?"
-        cursor.execute(sql_query, value)
-        result = cursor.fetchone()
-        conn.close()
+
+        result = self.sql_queries(
+            'SELECT',
+            'SELECT * FROM user_credentials WHERE username = ?',
+            (username,),
+            fetch='one'
+        )
         
         if not result or result[2] != passwd_hash:
             return (False, None)
@@ -76,18 +138,18 @@ class Choice:
         
         '''
         
-        conn, cursor = self.db_connect()
-        
         if self.check_db_for_user(username):
             return False, False
         
         try:
             passwd_hash = hashlib.sha512(password.encode('utf-8')).hexdigest()
-            value = (username, passwd_hash)
-            sql_query = "INSERT INTO user_credentials (username, pw_hash) VALUES (?, ?)"
-            cursor.execute(sql_query, value)
-            conn.commit()
-            conn.close()
+                        
+            result = self.sql_queries(
+                'INSERT',
+                'INSERT INTO user_credentials (username, pw_hash) VALUES (?, ?)',
+                (username, passwd_hash),
+                fetch=None
+            )
             
             return True, True
         except Exception as e:
@@ -124,21 +186,14 @@ class Choice:
             
         return passwd 
     
-    def __init__(self, option: str) -> None:
-        self.option = option
-        self.user = ''
-        self.pw = ''
-        
-        return None
-    
-    def option_1(self):
+    def login(self):
         ret = False
         self.clear_screen()
         print('Login')
         username = input('Username: ')
         password = gp.getpass('Password: ')
 
-        val, login = self.login( password, username )
+        val, login = self.login_helper( password, username )
         if not val:
             print('Login failed!')
             ret = False
@@ -150,13 +205,15 @@ class Choice:
             
         return ret
     
-    def option_2(self):
+    def register_new_user(self):
         self.clear_screen()
         print('Register a new user')
         
         username = input('Username: ') 
+        
         password = gp.getpass('Password: ')
         password_re = gp.getpass('Repeat password: ')
+        
         if password == password_re:
             val1, val2 = self.register( username, password ) 
             responses = {
@@ -176,7 +233,7 @@ class Choice:
             
         return ret
     
-    def option_3(self):
+    def change_password(self):
         '''
             Description:
                 Changes the password of an existing user.
@@ -186,35 +243,48 @@ class Choice:
                 True if the password was changed successfully, False otherwise
         '''
         
-        conn, cursor = self.db_connect()
+        ret = False
         value_1 = [None, None] # username, pw_hash
         value_2 = [None, None] # pw_hash, username
-        sql_query_1 = "SELECT * FROM user_credentials WHERE username = ? AND pw_hash = ?"
-        sql_query_2 = "UPDATE user_credentials SET pw_hash = ? WHERE username = ?"
-        
+
         value_1[0] = value_2[1] = input('Type in the username of the user whose password you want to change: ')
         passwd = self.check_pw("change", "current")
         value_1[1] = hashlib.sha512(passwd.encode('utf-8')).hexdigest()
         
-        cursor.execute(sql_query_1, value_1)
-        result = cursor.fetchone()
+        result = self.sql_queries(
+            'SELECT',
+            'SELECT * FROM user_credentials WHERE username = ? AND pw_hash = ?',
+            (value_1[0], value_1[1]),
+            fetch='one'
+        )
+        
+        # Check if the passwords in result and passwd match
+        if not result:
+            print('Username or password incorrect!')
+            ret = False
+            
+            return ret
         
         print( "\n" )
         new_passwd = self.check_pw("change", "new")
         value_2[0] = hashlib.sha512(new_passwd.encode('utf-8')).hexdigest()
         
-        cursor.execute(sql_query_2, value_2)
-        conn.commit() if result else None
-        conn.close() 
+        result = self.sql_queries(
+            'UPDATE',
+            'UPDATE user_credentials SET pw_hash = ? WHERE username = ?',
+            (value_2[0], value_2[1]),
+            fetch=None
+        )
         
         message = 'Password changed successfully!' if result else 'Error while changing password!'   
         print( message )
         
         self.user = value_1[0] if result else ''
         self.pw = new_passwd if result else ''
-        return True if result else False
+        ret = True if result else False
+        return ret
     
-    def option_4(self):
+    def delete_account(self):
         '''
             Description:
                 Deletes an existing user.
@@ -234,11 +304,20 @@ class Choice:
         value_1[1] = hashlib.sha512(passwd.encode('utf-8')).hexdigest()
         
         cursor.execute(sql_query_1, value_1)
-        result = cursor.fetchone()
+        result = self.sql_queries(
+            'SELECT',
+            'SELECT * FROM user_credentials WHERE username = ? AND pw_hash = ?',
+            (value_1[0], value_1[1]),
+            fetch='one'
+        )
         
         cursor.execute(sql_query_2, value_2)
-        conn.commit() if result else None
-        conn.close()
+        _ = self.sql_queries(
+            'DELETE',
+            'DELETE FROM user_credentials WHERE username = ?',
+            (value_2[0],),
+            fetch=None
+        )
         
         message = 'User deleted successfully!' if result else 'Error while deleting user!'
         print( message )
@@ -247,7 +326,7 @@ class Choice:
         self.pw = ''
         return True if result else False
     
-    def option_5(self):
+    def setup_exit(self):
         print('Thank you for using my message system! :)')
         print('Goodbye!')
         ret = True

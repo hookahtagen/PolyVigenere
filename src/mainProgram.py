@@ -119,7 +119,7 @@ class mainProgram:
         
         main_menu = f'''
         ********** Main Menu **********
-        Welcome,{self.login}!
+        Welcome,{self.login}!\n
         What do you want to do?
             Messaging options:
                 1. Send a message
@@ -141,7 +141,7 @@ class mainProgram:
         recipient = input('Enter the username of the recipient: ')
 
         key = self.sql_queries(
-            'SELECT'
+            'SELECT',
             'SELECT alphabets FROM alpha_set WHERE user_1 = ? AND user_2 = ?',
             (self.login, recipient),
             fetch='one'
@@ -155,15 +155,15 @@ class mainProgram:
             return ret
         message = input('Enter the message you want to send: ')
 
-        verify_send_start = '''
+        verify_send_start = f'''
         ***** Below is the message you want to send *****
         _________________________________________________
+        
+        Message: {message}\n
         '''
         print(verify_send_start)
-        print('Message: ' + message + '\n')
 
-        check_send: bool = input(
-            'Do you want to send the message? (y/n): ') in ['y', 'Y', 'yes', 'Yes', 'YES']
+        check_send: bool = input('Do you want to send the message? (y/n): ') in ['y', 'Y', 'yes', 'Yes', 'YES']
 
         if not check_send:
             print('Message not sent!')
@@ -205,13 +205,13 @@ class mainProgram:
         ret = False
 
         self.clear_screen()
-
+        
         # Get all messages from the database for the logged in user
         result = self.sql_queries(
             'SELECT',
-            'SELECT * FROM messages WHERE recipient = ?',
+            'SELECT * FROM messages WHERE recipient = ? AND read = 0',
             (self.login, ),
-            fetch=None
+            fetch='all'
         )
 
         messages_dict = {}
@@ -235,10 +235,11 @@ class mainProgram:
             for timestamp, message in messages_dict.items():
                 sender = message[0]
 
-                key_hash = self.sql_queries_result(
+                key_hash = self.sql_queries(
+                    'SELECT',
                     'SELECT alphabets FROM alpha_set WHERE (user_1 = ? AND user_2 = ?) OR (user_1 = ? AND user_2 = ?)',
-                    'self.login, sender, sender, self.login',
-                    'one'
+                    (self.login, sender, sender, self.login),
+                    fetch='one'
                 )[0]
 
                 # Decrypt the message
