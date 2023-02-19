@@ -19,7 +19,7 @@ from options import Choice
 from mainProgram import mainProgram
 
 
-def clear_screen(self):
+def clear_screen():
     '''
         Description: 
             Clears the screen.
@@ -44,37 +44,24 @@ def main(user: str):
 
     option: int = input('Please choose an option: ')
 
-    if option == '1':
-        ret = main_prog.send_message()
-    elif option == '2':
-        ret = main_prog.show_unread_messages()
-    elif option == '3':
-        ret = main_prog.edit_key()
-    elif option == '4':
-        ret = main_prog.logout()
-        answer: bool = input(ret_msg[0] if ret else ret_msg[1]) in ['y', 'Y', 'yes', 'Yes', 'YES']
-        if answer:
-            setup()
-            pass
-    elif option == '5':
-        ret = main_prog.main_exit()
-        goodbye_message = '''
-        Thank you for using my messaging system! :)\n
-        Goodbye, and may your code compile on the first try, every time.\n
-        Or use Python, and f*** on the compiler.\n
-        Anyways, have a nice day! :D
-        '''
-        print(goodbye_message)
-        return ret
+    user_accept_tuple = ['y', 'Y', 'yes', 'Yes', 'YES']
 
-    answer: bool = input(ret_msg[0] if ret else ret_msg[1]) in ['y', 'Y', 'yes', 'Yes', 'YES']
-    if answer:
+    if (option == '1' and input(ret_msg[0] if main_prog.send_message() else ret_msg[1]) in user_accept_tuple) or \
+       (option == '2' and input(ret_msg[0] if main_prog.show_unread_messages() else ret_msg[1]) in user_accept_tuple) or \
+       (option == '3' and input(ret_msg[0] if main_prog.edit_key() else ret_msg[1]) in user_accept_tuple) or \
+       (option == '4' and input(ret_msg[0] if main_prog.logout() else ret_msg[1]) in user_accept_tuple):
+
+        setup()
         main(user)
+        
+    elif option == '5':
+        ret = True
 
     return ret
 
 
 def setup() -> bool:
+    clear_screen()
     def print_menu() -> None:
         '''
             Description:
