@@ -16,6 +16,7 @@
 '''
 
 import os
+from types import SimpleNamespace
 from options import Choice
 from mainProgram import mainProgram
 
@@ -33,19 +34,19 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def main(user: str):
+def main(user: str, cfg: SimpleNamespace):
     ret = False
-    main_prog = mainProgram(user)
+    main_prog = mainProgram(user, cfg)
 
     ret_msg = [
         'Do you want to return to the main menu? (y/n) > ',
         'Something went wrong. Do you want to try again? (y/n) > '
     ]
     user_accept_tuple = [
-        'y', 
-        'Y', 
-        'yes', 
-        'Yes', 
+        'y',
+        'Y',
+        'yes',
+        'Yes',
         'YES']
     options = [
         main_prog.send_message,
@@ -54,7 +55,7 @@ def main(user: str):
         main_prog.delete_account,
         main_prog.logout
     ]
-    
+
     option: int = input('Please choose an option: ')
 
     if (input(ret_msg[0] if options[int(option) - 1]() else ret_msg[1]) in user_accept_tuple):
@@ -67,7 +68,7 @@ def main(user: str):
     return ret
 
 
-def setup() -> bool:
+def setup(cfg: SimpleNamespace) -> bool:
     clear_screen()
 
     def print_menu() -> None:
@@ -99,12 +100,12 @@ def setup() -> bool:
 
     p_message = 'Please choose an option: '
     option: int = input(p_message)
-    Setup = Choice(option)
+    Setup = Choice(option, cfg)
 
     if option == '1':
         ret = Setup.login()
         if ret:
-            main(Setup.user)
+            main(Setup.user, cfg)
     elif option == '2':
         ret = Setup.register_new_user()
     elif option == '3':
@@ -117,6 +118,17 @@ def setup() -> bool:
     return ret
 
 
+def parse_config() -> SimpleNamespace:
+    cfg_file = 'config.cfg'
+    cfg = SimpleNamespace()
+
+    with open(cfg_file, 'r') as f:
+        for line in f:
+            key, value = line.split('=')
+            setattr(cfg, key, value.strip())
+
+
 if __name__ == '__main__':
-    ret = setup()
+    cfg = parse_config()
+    ret = setup(cfg)
     exit(0 if ret else 1)

@@ -3,20 +3,16 @@ import hashlib
 import getpass as gp
 import os
 import sqlite3 as s
+from types import SimpleNamespace
 
 from Vigenere import Machine
 
-#
-# ***** Defines *****
-#
-
-p_print = print
-
 
 class mainProgram:
-    def __init__(self, login: str) -> None:
+    def __init__(self, login: str, cfg: SimpleNamespace) -> None:
         self.login = login
         self.machine = Machine()
+        self.cfg = cfg
 
         self.print_main_menu()
 
@@ -35,7 +31,7 @@ class mainProgram:
                 cursor <sqlite3.Cursor>: Cursor object
         '''
 
-        self.db_name = "../database/users.db"
+        self.db_name = os.path.join(self.cfg.db_path, self.cfg.db_name)
         self.conn = s.connect(self.db_name)
         self.cursor = self.conn.cursor()
 
