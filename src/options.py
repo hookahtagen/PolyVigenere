@@ -29,7 +29,7 @@ class Choice:
         '''
         
         
-        self.db_name = "/home/hendrik/Documents/Github/PolyVigenere/database/users.db"
+        self.db_name = "../database/users.db"
         self.conn = s.connect(self.db_name)
         self.cursor = self.conn.cursor()
         
@@ -287,45 +287,70 @@ class Choice:
     def delete_account(self):
         '''
             Description:
-                Deletes an existing user.
+                Deletes an existing user from the database.
             Parameters:
                 None
             Returns:
                 True if the user was deleted successfully, False otherwise
         '''
-        conn, cursor = self.db_connect()
-        value_1 = [ None, None ] # username, pw_hash
-        value_2 = [ None, ] # username
-        sql_query_1 = "SELECT * FROM user_credentials WHERE username = ? AND pw_hash = ?"
-        sql_query_2 = "DELETE FROM user_credentials WHERE username = ?"
+        ret = False
+        str_lst = [
+            'Type in the username of the user you want to delete: ',
+            'User deleted successfully!',
+            'Error while deleting user!'
+            
+        ]
+        query_lst = [
+            "SELECT * FROM user_credentials WHERE username = ? AND pw_hash = ?",
+            "DELETE FROM user_credentials WHERE username = ?"
+        ]
         
-        value_1[0] = value_2[0] = input('Type in the username of the user you want to delete: ')   
+        username = input(str_lst[0])
         passwd = self.check_pw('delete')
-        value_1[1] = hashlib.sha512(passwd.encode('utf-8')).hexdigest()
-        
-        cursor.execute(sql_query_1, value_1)
-        result = self.sql_queries(
+        passwd_hash = hashlib.sha512(passwd.encode('utf-8')).hexdigest()
+        stored_passwd = self.sql_queries(
             'SELECT',
-            'SELECT * FROM user_credentials WHERE username = ? AND pw_hash = ?',
-            (value_1[0], value_1[1]),
+            query_lst[0],
+            values=(
+                username,
+                passwd_hash
+            ),
             fetch='one'
         )
         
-        cursor.execute(sql_query_2, value_2)
-        _ = self.sql_queries(
+        if not stored_passwd or stored_passwd[1] != passwd_hash:
+            print('Username or password incorrect!')
+            ret = False
+            
+            return ret
+        
+        result = self.sql_queries(
             'DELETE',
-            'DELETE FROM user_credentials WHERE username = ?',
-            (value_2[0],),
+            query_lst[1],
+            values=(
+                username,
+                
+            ),
             fetch=None
         )
         
-        message = 'User deleted successfully!' if result else 'Error while deleting user!'
-        print( message )
-    
-        self.user = value_1[0] if result else ''
-        self.pw = ''
-        return True if result else False
-    
+        val = self.sql_queries(
+            'SELECT',
+            'SELECT * FROM user_credentials WHERE username = ?',
+            (username,),
+            fetch='one'
+        )
+        
+        if not val or result:
+            print(str_lst[1])
+            ret = True
+
+        elif val and not result:
+            print(str_lst[2])
+            ret = False
+        
+        return ret
+        
     def setup_exit(self):
         print('Thank you for using my message system! :)')
         print('Goodbye!')

@@ -1,3 +1,4 @@
 .vscode/launch.json
 src/__pycache__/
 .vscode/
+testarea/

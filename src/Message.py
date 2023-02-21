@@ -35,25 +35,31 @@ def clear_screen():
 def main(user: str):
     ret = False
     main_prog = mainProgram(user)
-    main_prog.print_main_menu()
 
     ret_msg = [
         'Do you want to return to the main menu? (y/n) > ',
         'Something went wrong. Do you want to try again? (y/n) > '
     ]
-
+    user_accept_tuple = [
+        'y', 
+        'Y', 
+        'yes', 
+        'Yes', 
+        'YES']
+    options = [
+        main_prog.send_message,
+        main_prog.show_unread_messages,
+        main_prog.edit_key,
+        main_prog.delete_account,
+        main_prog.logout
+    ]
+    
     option: int = input('Please choose an option: ')
 
-    user_accept_tuple = ['y', 'Y', 'yes', 'Yes', 'YES']
-
-    if (option == '1' and input(ret_msg[0] if main_prog.send_message() else ret_msg[1]) in user_accept_tuple) or \
-       (option == '2' and input(ret_msg[0] if main_prog.show_unread_messages() else ret_msg[1]) in user_accept_tuple) or \
-       (option == '3' and input(ret_msg[0] if main_prog.edit_key() else ret_msg[1]) in user_accept_tuple) or \
-       (option == '4' and input(ret_msg[0] if main_prog.logout() else ret_msg[1]) in user_accept_tuple):
-
+    if (input(ret_msg[0] if options[int(option) - 1]() else ret_msg[1]) in user_accept_tuple):
         setup()
         main(user)
-        
+
     elif option == '5':
         ret = True
 
@@ -62,6 +68,7 @@ def main(user: str):
 
 def setup() -> bool:
     clear_screen()
+
     def print_menu() -> None:
         '''
             Description:
