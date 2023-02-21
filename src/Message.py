@@ -2,7 +2,7 @@
     Author: Hendrik Siemens
     Date: 2023-02-13
     Email: siemenshendrik1@gmail.com
-    Version: 0.1
+    Version: 1.0.0
     
     Description:
         This program is a simple messaging system with a login system 
@@ -11,7 +11,8 @@
         messages using the Vigenere cipher. Messages and alphabet sets are stored in 
         separate databases for security. 
         
-        The program is intended for personal use or educational purposes only.    
+        The program is intended for personal use or educational purposes only.
+         
 '''
 
 import os
