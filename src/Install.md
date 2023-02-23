@@ -37,5 +37,5 @@ hendrik@example:~$
 
 ```
 
-And no, this message is not an actual prediction of the future. It's just a random message i used for testing.
+And no, this message is not an actual prediction of the future. It's just a random message i used for testing.<br>
 Shut up conspiracy theorists!

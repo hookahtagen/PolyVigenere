@@ -18,7 +18,7 @@
 import os
 from types import SimpleNamespace
 from options import Choice
-from mainProgram import mainProgram
+from mainProgram import MainProgram as mainProgram
 
 
 def clear_screen():
@@ -34,9 +34,9 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def main(user: str, cfg: SimpleNamespace):
+def main(user: str, config: SimpleNamespace):
     ret = False
-    main_prog = mainProgram(user, cfg)
+    main_prog = mainProgram(user, config)
 
     ret_msg = [
         'Do you want to return to the main menu? (y/n) > ',
@@ -47,7 +47,8 @@ def main(user: str, cfg: SimpleNamespace):
         'Y',
         'yes',
         'Yes',
-        'YES']
+        'YES'
+    ]
     options = [
         main_prog.send_message,
         main_prog.show_unread_messages,
@@ -56,11 +57,11 @@ def main(user: str, cfg: SimpleNamespace):
         main_prog.logout
     ]
 
-    option: int = input('Please choose an option: ')
+    option: int = int(input('Please choose an option: '))
 
-    if (input(ret_msg[0] if options[int(option) - 1]() else ret_msg[1]) in user_accept_tuple):
-        setup()
-        main(user)
+    if input(ret_msg[0] if options[option - 1]() else ret_msg[1]) in user_accept_tuple:
+        setup(config)
+        main(user, config)
 
     elif option == '5':
         ret = True
@@ -68,11 +69,13 @@ def main(user: str, cfg: SimpleNamespace):
     return ret
 
 
-def setup(cfg: SimpleNamespace) -> bool:
+def setup(config: SimpleNamespace) -> bool:
+    ret = False
+
     clear_screen()
 
     def print_menu() -> None:
-        '''
+        """
             Description:
                 Prints the menu. This should be done using a function, because
                 it's easier to modify the menu in the future and provides more
@@ -81,10 +84,25 @@ def setup(cfg: SimpleNamespace) -> bool:
                 None
             Returns:
                 None
-        '''
+        """
 
         setup_menu = '''
-        Welcome to Vigenere Secret Chat!
+        ****************************************
+        *                                      *
+        *   Welcome to Vigenere Secret Chat!   *
+        *                                      *
+        ****************************************
+        
+        This program is a simple messaging system with encryption
+        for personal use or educational purposes only. 
+        The encryption method used is developed by me and is based on the Vigenere cipher.
+        
+        For more information, please visit my GitHub page:
+        https://www.github.com/hookahtagen
+        
+        Note:
+        For the best experience, please use a monospace font.
+         
         Please choose an option:
             1. Login
             2. Register
@@ -92,40 +110,39 @@ def setup(cfg: SimpleNamespace) -> bool:
             4. Delete account
             5. Exit
         '''
-
-        print(setup_menu)
+        print(setup_menu, end=" ")
     print_menu()
 
-    ret = False
-
     p_message = 'Please choose an option: '
-    option: int = input(p_message)
-    Setup = Choice(option, cfg)
+    option: int = int(input(p_message))
+    Setup = Choice(option, config)
 
-    if option == '1':
+    if option == 1:
         ret = Setup.login()
         if ret:
-            main(Setup.user, cfg)
-    elif option == '2':
+            main(Setup.user, config)
+    elif option == 2:
         ret = Setup.register_new_user()
-    elif option == '3':
+    elif option == 3:
         ret = Setup.change_password()
-    elif option == '4':
+    elif option == 4:
         ret = Setup.delete_account()
-    elif option == '5':
+    elif option == 5:
         ret = Setup.setup_exit()
 
     return ret
 
 
 def parse_config() -> SimpleNamespace:
-    cfg_file = 'config.cfg'
+    cfg_file = '../settings/config.cfg'
     cfg = SimpleNamespace()
 
-    with open(cfg_file, 'r') as f:
-        for line in f:
+    with open(cfg_file, 'r') as config:
+        for line in config:
             key, value = line.split('=')
-            setattr(cfg, key, value.strip())
+            setattr(cfg, key, value.strip().replace('\'', ''))
+
+    return cfg
 
 
 if __name__ == '__main__':

@@ -8,37 +8,36 @@ from types import SimpleNamespace
 from Vigenere import Machine
 
 
-class mainProgram:
+class MainProgram:
     def __init__(self, login: str, cfg: SimpleNamespace) -> None:
         self.login = login
         self.machine = Machine()
-        self.cfg = cfg
+        self.db_file = cfg.db_file
 
         self.print_main_menu()
 
+    @staticmethod
     def p_continue(self):
         print('Press enter to continue...')
         input()
 
     def db_connect(self):
-        '''
+        """
             Description:
                 Connects to the database and returns the connection and cursor objects.
             Parameters:
-                None
             Returns:
                 conn <sqlite3.Connection>: Connection object
                 cursor <sqlite3.Cursor>: Cursor object
-        '''
+        """
 
-        self.db_name = os.path.join(self.cfg.db_path, self.cfg.db_name)
-        self.conn = s.connect(self.db_name)
-        self.cursor = self.conn.cursor()
+        conn = s.connect(self.db_file)
+        cursor = conn.cursor()
 
-        return self.conn, self.cursor
+        return conn, cursor
 
     def sql_queries(self, keyword: str, query: str, values: tuple, fetch: str = 'all'):
-        '''
+        """
             Description:
                 Executes a SQL query. The query is executed based on the keyword.
                 The keyword is used to determine which function should be executed.
@@ -51,43 +50,43 @@ class mainProgram:
                 values <tuple>: Values to be inserted into the query
             Returns:
                 result: The result of the query. If the query is an INSERT, UPDATE or SELECT
-        '''
+        """
         result = None
 
-        def INSERT(conn, cursor):
-            cursor.execute(query, values)
-            conn.commit()
-            result = True
+        def insert(con, curs):
+            curs.execute(query, values)
+            con.commit()
+            query_result = True
 
-            return result
+            return query_result
 
-        def SELECT(conn, cursor):
-            cursor.execute(query, values)
-            fetch_lst = [cursor.fetchall(), cursor.fetchone()]
-            result = fetch_lst[0] if fetch == 'all' else fetch_lst[1]
+        def select(con, curs):
+            curs.execute(query, values)
+            fetch_lst = [curs.fetchall(), curs.fetchone()]
+            query_result = fetch_lst[0] if fetch == 'all' else fetch_lst[1]
 
-            return result
+            return query_result
 
-        def UPDATE(conn, cursor):
-            '''
+        def update(con, curs):
+            """
                 For now this function is the same as INSERT.
                 So therefor it's just a placeholder and 'redirects' to INSERT.
-            '''
-            INSERT(conn, cursor)
+            """
+            insert(con, curs)
 
-        def DELETE(conn, cursor):
-            cursor.execute(query)
-            conn.commit()
-            result = True
+        def delete(con, curs):
+            curs.execute(query)
+            con.commit()
+            query_result = True
 
-            return result
+            return query_result
 
         conn, cursor = self.db_connect()
         keyword_lst = {
-            'INSERT': INSERT,
-            'SELECT': SELECT,
-            'UPDATE': UPDATE,
-            'DELETE': DELETE
+            'INSERT': insert,
+            'SELECT': select,
+            'UPDATE': update,
+            'DELETE': delete
         }
 
         try:
@@ -102,29 +101,31 @@ class mainProgram:
 
         return result
 
+    @staticmethod
     def clear_screen(self):
-        '''
-            Description: 
-                Clears the screen.
+        """
+            Description:
+                Clears the screen using the os module.
+                This function is static, because it doesn't need to access any
+                class attributes or methods.
             Parameters:
-                None
+                self: The object itself
             Returns:
-                None    
-        '''
+                None
+        """
 
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def print_main_menu(self):
-        '''
+        """
             Description:
                 Prints the menu. This should be done using a function, because
                 it's easier to modify the menu in the future and provides more
                 readability.
             Parameters:
-                None
             Returns:
                 None
-        '''
+        """
 
         main_menu = f'''
         ********** Main Menu **********
@@ -141,7 +142,7 @@ class mainProgram:
                 6. Exit
         '''
 
-        self.clear_screen()
+        self.clear_screen(self)
         print(main_menu)
 
     def send_message(self):
@@ -167,7 +168,7 @@ class mainProgram:
             'Yes',
             'YES']
 
-        self.clear_screen()
+        self.clear_screen(self)
 
         recipient = input(str_lst[0])
 
@@ -199,12 +200,12 @@ class mainProgram:
 
         if not check_send:
             print('Message not sent!')
-            self.p_continue()
+            self.p_continue(self)
 
             ret = False
 
         elif check_send:
-            self.clear_screen()
+            self.clear_screen(self)
             print(str_lst[5])
             time_stamp = str(datetime.datetime.now())
 
@@ -214,7 +215,7 @@ class mainProgram:
                 key,
                 message,
                 False,
-                None
+                'None'
             )
 
             # Store the encrypted message in the database
@@ -228,11 +229,11 @@ class mainProgram:
                     enciphered_message,
                     0
                 ),
-                fetch=None
+                fetch='None'
             )
 
             print(str_lst[6] if result else str_lst[7])
-            self.p_continue()
+            self.p_continue(self)
 
             ret = True
 
@@ -252,9 +253,9 @@ class mainProgram:
 
         ]
 
-        self.clear_screen()
+        self.clear_screen(self)
 
-        # Get all messages from the database for the logged in user
+        # Get all messages from the database for the logged-in user
         result = self.sql_queries(
             'SELECT',
             query_lst[0],
@@ -272,7 +273,7 @@ class mainProgram:
         print(str_lst[0])
         if not messages_dict:
             print(str_lst[1])
-            self.p_continue()
+            self.p_continue(self)
             ret = True
         elif messages_dict:
             for timestamp, message in messages_dict.items():
@@ -295,7 +296,7 @@ class mainProgram:
                     key_hash.upper(),
                     message[1],
                     False,
-                    None
+                    'None'
                 )
 
                 # Print the message
@@ -313,7 +314,7 @@ class mainProgram:
                         1,
                         self.login,
                         timestamp),
-                    fetch=None
+                    fetch='None'
                 )
 
                 if not result:
@@ -322,20 +323,24 @@ class mainProgram:
                 elif result:
                     ret = True
 
-            self.p_continue()
+            self.p_continue(self)
 
         return ret
 
     def apply_new_key(self, old_key, new_key, user_1, user_2):
-        '''
+        """
             Description:
                 This function provides the change of the key used for the encryption and decryption of the messages.
                 It basically applies the new key to all messages that were encrypted with the old key.
             Parameters:
+                user_2: The username of the other user
+                user_1: The username of the logged-in user
+                new_key: The new key to be used for the encryption and decryption of the messages
+                old_key: The old key that was used for the encryption and decryption of the messages
                 self: The object itself
             Returns:
                 None
-        '''
+        """
 
         str_lst = [
             'The key has been changed successfully!',
@@ -355,7 +360,7 @@ class mainProgram:
 
             result = self.sql_queries(
                 'SELECT',
-                'SELECT * FROM messages WHERE (sender = ? AND recipient = ?) OR (sender = ? AND recipient = ?)',
+                query_lst[0],
                 values=(
                     user_1,
                     user_2,
@@ -371,18 +376,28 @@ class mainProgram:
             for id, message in messages.items():
                 message = message[4]
                 message, mic = self.machine.process_message(
-                    'd', old_key, message, False, None)
+                    'd',
+                    old_key,
+                    message,
+                    False,
+                    'None'
+                )
                 message, mic = self.machine.process_message(
-                    'e', new_key, message, False, None)
+                    'e',
+                    new_key,
+                    message,
+                    False,
+                    'None'
+                )
 
                 result = self.sql_queries(
                     'UPDATE',
-                    'UPDATE messages SET message = ? WHERE id = ?',
+                    query_lst[1],
                     values=(
                         message,
                         id
                     ),
-                    fetch=None
+                    fetch='None'
                 )
             val = True
         except s.Error as e:
@@ -430,7 +445,7 @@ class mainProgram:
         if result:
             if result[0] != old_key:
                 print(str_lst[2])
-                self.p_continue()
+                self.p_continue(self)
 
                 ret = False
                 return ret
@@ -443,7 +458,7 @@ class mainProgram:
 
         if key != key_re:
             print(str_lst[5])
-            self.p_continue()
+            self.p_continue(self)
 
             ret = False
             return ret
@@ -455,7 +470,7 @@ class mainProgram:
         for char in key:
             if char not in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
                 print('Invalid key!')
-                self.p_continue()
+                self.p_continue(self)
 
                 ret = False
                 break
@@ -483,7 +498,7 @@ class mainProgram:
                     recipient,
                     key
                 ),
-                fetch=None
+                fetch='None'
             )
 
         elif result:
@@ -497,7 +512,7 @@ class mainProgram:
                     recipient,
                     self.login
                 ),
-                fetch=None
+                fetch='None'
             )
 
         if not result:
@@ -512,7 +527,7 @@ class mainProgram:
             print(str_lst[6])
             ret = True
 
-        self.p_continue()
+        self.p_continue(self)
 
         answer: bool = input(str_lst[7]).lower() == 'y'
 
@@ -555,7 +570,7 @@ class mainProgram:
 
         if passwd not in [passwd_re, stored_user_password[2]]:
             print(str_lst[3])
-            self.p_continue()
+            self.p_continue(self)
 
             ret = False
             return ret
@@ -566,18 +581,18 @@ class mainProgram:
                 values=(
                     username,
                 ),
-                fetch=None
+                fetch='None'
             )
 
             if not result:
                 print(str_lst[3])
-                self.p_continue()
+                self.p_continue(self)
 
                 ret = False
                 return ret
 
             print(str_lst[4])
-            self.p_continue()
+            self.p_continue(self)
 
             ret = True
             self.logout()
@@ -588,14 +603,16 @@ class mainProgram:
             'Logging out...'
         ]
 
-        print(str_lst[0])
-        self.p_continue()
+        if not ret:
+            print(str_lst[0])
+            self.p_continue(self)
 
-        ret = True
-        self.clear_screen()
+            ret = True
+            self.clear_screen(self)
 
         return ret
 
+    @staticmethod
     def main_exit(self):
         ret = True
         str_lst = [

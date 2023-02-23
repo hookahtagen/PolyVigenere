@@ -1,19 +1,16 @@
-from calendar import c
 import hashlib
 import getpass as gp
 import os
-import sqlite3 as s
+import sqlite3 as sql
 from types import SimpleNamespace
 
 
 class Choice:
-    def __init__(self, option: str, cfg: SimpleNamespace) -> None:
+    def __init__(self, option: str, cfg: SimpleNamespace):
         self.option = option
         self.user = ''
         self.pw = ''
-        self.cfg = cfg
-
-        return None
+        self.db_file = cfg.db_file
 
     def clear_screen(self):
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -28,12 +25,10 @@ class Choice:
                 conn <sqlite3.Connection>: Connection object
                 cursor <sqlite3.Cursor>: Cursor object
         '''
+        conn = sql.connect(self.db_file)
+        cursor = conn.cursor()
 
-        self.db_file = os.path.join(self.cfg.db_path, self.cfg.db_name)
-        self.conn = s.connect(self.db_file)
-        self.cursor = self.conn.cursor()
-
-        return self.conn, self.cursor
+        return conn, cursor
 
     def check_db_for_user(self, username: str) -> bool:
         conn, cursor = self.db_connect()
@@ -100,7 +95,7 @@ class Choice:
         return result
 
     def login_helper(self, password: str, username: str) -> tuple[bool, str]:
-        '''
+        """
             Description:
                 Checks if the username and password are correct.
             Parameters:
@@ -108,7 +103,7 @@ class Choice:
                 username <str>: Username
             Returns:
                 True if the username and password are correct, False otherwise
-        '''
+        """
 
         passwd_hash = hashlib.sha512(password.encode('utf-8')).hexdigest()
 
@@ -120,11 +115,11 @@ class Choice:
         )
 
         if not result or result[2] != passwd_hash:
-            return (False, None)
-        return (True, result[1])
+            return False, 'None'
+        return True, result[1]
 
     def register(self, username: str, password: str):
-        '''
+        """
             Description:
                 Registers a new user.
             Parameters:
@@ -136,7 +131,7 @@ class Choice:
                 True, False if there was an error while creating the user directory
                 True, True if the user was registered successfully
 
-        '''
+        """
 
         if self.check_db_for_user(username):
             return False, False
@@ -144,11 +139,11 @@ class Choice:
         try:
             passwd_hash = hashlib.sha512(password.encode('utf-8')).hexdigest()
 
-            result = self.sql_queries(
+            _ = self.sql_queries(
                 'INSERT',
                 'INSERT INTO user_credentials (username, pw_hash) VALUES (?, ?)',
                 (username, passwd_hash),
-                fetch=None
+                fetch='None'
             )
 
             return True, True
@@ -156,8 +151,9 @@ class Choice:
             print(e)
             return False, True
 
+    @staticmethod
     def check_pw(self, mode: str, key_word='') -> str:
-        '''
+        """
             Description:
                 Checks if the two passwords are the same.
             Parameters:
@@ -166,8 +162,8 @@ class Choice:
                 mode <str>: Mode of operation
             Returns:
                 True if the passwords are the same, False otherwise
-        '''
-
+        """
+        str_1 = str_2 = ''
         if mode == 'register':
             pass
         elif mode == 'change':
@@ -234,14 +230,14 @@ class Choice:
         return ret
 
     def change_password(self):
-        '''
+        """
             Description:
                 Changes the password of an existing user.
             Parameters:
                 None
             Returns:
                 True if the password was changed successfully, False otherwise
-        '''
+        """
 
         ret = False
         value_1 = [None, None]  # username, pw_hash
@@ -274,7 +270,7 @@ class Choice:
             'UPDATE',
             'UPDATE user_credentials SET pw_hash = ? WHERE username = ?',
             (value_2[0], value_2[1]),
-            fetch=None
+            fetch='None'
         )
 
         message = 'Password changed successfully!' if result else 'Error while changing password!'
@@ -286,14 +282,14 @@ class Choice:
         return ret
 
     def delete_account(self):
-        '''
+        """
             Description:
                 Deletes an existing user from the database.
             Parameters:
                 None
             Returns:
                 True if the user was deleted successfully, False otherwise
-        '''
+        """
         ret = False
         str_lst = [
             'Type in the username of the user you want to delete: ',
@@ -307,7 +303,7 @@ class Choice:
         ]
 
         username = input(str_lst[0])
-        passwd = self.check_pw('delete')
+        passwd = self.check_pw('delete', '')
         passwd_hash = hashlib.sha512(passwd.encode('utf-8')).hexdigest()
         stored_passwd = self.sql_queries(
             'SELECT',
@@ -332,7 +328,7 @@ class Choice:
                 username,
 
             ),
-            fetch=None
+            fetch='None'
         )
 
         val = self.sql_queries(
@@ -352,6 +348,7 @@ class Choice:
 
         return ret
 
+    @staticmethod
     def setup_exit(self):
         print('Thank you for using my message system! :)')
         print('Goodbye!')
