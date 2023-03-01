@@ -3,6 +3,7 @@ import hashlib
 import getpass as gp
 import os
 import sqlite3 as s
+import time
 from types import SimpleNamespace
 
 from Vigenere import Machine
@@ -13,12 +14,27 @@ class MainProgram:
         self.login = login
         self.machine = Machine()
         self.db_file = cfg.db_file
+        self.p_continue_message = 'Press enter to continue...'
+        self.clear_screen_message = 'Clearing the screen...'
+        self.exit_message = '''
+            Thank you for using my message system!
+            Have a nice day :)
+            '''
 
         self.print_main_menu()
 
     @staticmethod
     def p_continue(self):
-        print('Press enter to continue...')
+        """
+        Description:
+            Prints a message and waits for the user to press enter.
+            Used to avoid redundant code.
+        Args:
+            self: The object itself
+        Returns:
+            None
+        """
+        print(self.p_continue_message)
         input()
 
     def db_connect(self):
@@ -52,6 +68,8 @@ class MainProgram:
                 result: The result of the query. If the query is an INSERT, UPDATE or SELECT
         """
         result = None
+        if not result:
+            pass
 
         def insert(con, curs):
             curs.execute(query, values)
@@ -60,7 +78,7 @@ class MainProgram:
 
             return query_result
 
-        def select(con, curs):
+        def select(_, curs):
             curs.execute(query, values)
             fetch_lst = [curs.fetchall(), curs.fetchone()]
             query_result = fetch_lst[0] if fetch == 'all' else fetch_lst[1]
@@ -113,7 +131,8 @@ class MainProgram:
             Returns:
                 None
         """
-
+        print('\n\n'+self.clear_screen_message)
+        time.sleep(2)
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def print_main_menu(self):
@@ -358,14 +377,13 @@ class MainProgram:
         try:
             messages = {}
 
+            value = user_1, user_2
             result = self.sql_queries(
                 'SELECT',
                 query_lst[0],
                 values=(
-                    user_1,
-                    user_2,
-                    user_2,
-                    user_1
+                    value,
+                    value[::-1]
                 ),
                 fetch='all'
             )
@@ -597,6 +615,8 @@ class MainProgram:
             ret = True
             self.logout()
 
+            return ret
+
     def logout(self):
         ret = False
         str_lst = [
@@ -615,13 +635,7 @@ class MainProgram:
     @staticmethod
     def main_exit(self):
         ret = True
-        str_lst = [
-            '''
-            Thank you for using my message system!
-            Have a nice day :)
-            '''
-        ]
 
-        print(str_lst[0])
+        print(self.exit_message)
 
         return ret

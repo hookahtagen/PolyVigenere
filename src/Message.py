@@ -1,19 +1,19 @@
-'''
+"""
     Author: Hendrik Siemens
     Date: 2023-02-13
     Email: siemenshendrik1@gmail.com
     Version: 1.0.0
-    
+
     Description:
-        This program is a simple messaging system with a login system 
-        that supports registering, logging in, changing passwords, and deleting users. 
-        Each user has a unique alphabet set that is used to encrypt and decrypt their 
-        messages using the Vigenere cipher. Messages and alphabet sets are stored in 
-        separate databases for security. 
-        
+        This program is a simple messaging system with a login system
+        that supports registering, logging in, changing passwords, and deleting users.
+        Each user has a unique alphabet set that is used to encrypt and decrypt their
+        messages using the Vigenere cipher. Messages and alphabet sets are stored in
+        separate databases for security.
+
         The program is intended for personal use or educational purposes only.
-         
-'''
+
+"""
 
 import os
 from types import SimpleNamespace
@@ -22,20 +22,19 @@ from mainProgram import MainProgram as mainProgram
 
 
 def clear_screen():
-    '''
-        Description: 
+    """
+        Description:
             Clears the screen.
         Parameters:
-            None
         Returns:
-            None    
-    '''
+            None
+    """
 
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def main(user: str, config: SimpleNamespace):
-    ret = False
+    ret_value = False
     main_prog = mainProgram(user, config)
 
     ret_msg = [
@@ -64,13 +63,13 @@ def main(user: str, config: SimpleNamespace):
         main(user, config)
 
     elif option == '5':
-        ret = True
+        ret_value = True
 
-    return ret
+    return ret_value
 
 
 def setup(config: SimpleNamespace) -> bool:
-    ret = False
+    ret_value = False
 
     clear_screen()
 
@@ -81,7 +80,6 @@ def setup(config: SimpleNamespace) -> bool:
                 it's easier to modify the menu in the future and provides more
                 readability.
             Parameters:
-                None
             Returns:
                 None
         """
@@ -115,34 +113,36 @@ def setup(config: SimpleNamespace) -> bool:
 
     p_message = 'Please choose an option: '
     option: int = int(input(p_message))
-    Setup = Choice(option, config)
+    setup_obj = Choice(str(option), config)
 
     if option == 1:
-        ret = Setup.login()
-        if ret:
-            main(Setup.user, config)
+        ret_value = setup_obj.login()
+        if ret_value:
+            main(setup_obj.user, config)
     elif option == 2:
-        ret = Setup.register_new_user()
+        ret_value = setup_obj.register_new_user()
     elif option == 3:
-        ret = Setup.change_password()
+        ret_value = setup_obj.change_password()
     elif option == 4:
-        ret = Setup.delete_account()
+        ret_value = setup_obj.delete_account()
     elif option == 5:
-        ret = Setup.setup_exit()
+        ret_value = setup_obj.setup_exit('')
 
-    return ret
+    return ret_value
 
 
 def parse_config() -> SimpleNamespace:
     cfg_file = '../settings/config.cfg'
-    cfg = SimpleNamespace()
+    # For later use:
+    # config = SimpleNamespace()
 
     with open(cfg_file, 'r') as config:
         for line in config:
             key, value = line.split('=')
-            setattr(cfg, key, value.strip().replace('\'', ''))
+            setattr(config, key, value.strip().replace('\'', ''))
 
-    return cfg
+    ret_config = SimpleNamespace(**config.__dict__)
+    return ret_config
 
 
 if __name__ == '__main__':
